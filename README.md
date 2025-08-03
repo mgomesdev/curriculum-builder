@@ -1,7 +1,7 @@
 <h2>📄 Projeto: <strong>Curriculum Builder</strong></h2>
 <hr>
 <h3>🧠 Visão Geral</h3>
-<p>Uma aplicação web que permite editar o currículo diretamente na tela, sem depender de editores de PDF, com funcionalidades de atualização em tempo real, ordenação, salvamento de versões e exportação em PDF, trazendo praticidade e autonomia para manter o currículo atualizado com poucos cliques.</p>
+<p>Uma aplicação web single page application (SPA) que permite editar o currículo diretamente na tela, sem depender de editores de PDF, com funcionalidades de atualização em tempo real, ordenação, salvamento de versões e exportação em PDF, trazendo praticidade e autonomia para manter o currículo atualizado com poucos cliques.</p>
 <h3>🔍 Problema</h3>
 <p>Manter o currículo sempre atualizado no formato PDF é uma tarefa manual e suscetível ao esquecimento, especialmente para quem tem uma rotina corrida. Editar PDFs pode ser trabalhoso, exige ferramentas específicas e muitas vezes dificulta pequenos ajustes rápidos.</p>
 <hr>
