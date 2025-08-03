@@ -5,7 +5,7 @@
 <h3>🔍 Problema</h3>
 <p>Manter o currículo sempre atualizado no formato PDF é uma tarefa manual e suscetível ao esquecimento, especialmente para quem tem uma rotina corrida. Editar PDFs pode ser trabalhoso, exige ferramentas específicas e muitas vezes dificulta pequenos ajustes rápidos.</p>
 <hr>
-<h3>✅ Solução</h3>
+<h3>✅ Soluçsadfão</h3>
 <p>Uma ferramenta web que permite:</p>
 <ul>
 <li>Visualizar e editar o currículo diretamente na tela.</li>
