@@ -11,7 +11,7 @@
 <li>Visualizar e editar o currículo diretamente na tela.</li>
 <li>Clicar sobre os campos para alterar informações inline.</li>
 <li>Reordenar seções do currículo de maneira simples (drag-and-drop).</li>
-<li>Salvar versões do cufgrrículo editado.</li>
+<li>Salvar versões do currículo editado.</li>
 <li>Fazer download do currículo atualizado em formato PDF.</li>
 <li>Basear-se em modelos personalizáveis (inicialmente apenas 1).</li>
 </ul>
