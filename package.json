@@ -16,7 +16,7 @@
          "prettier --write"
       ],
       "*.{json,css,md}": [
-         ""
+         "eslint"
       ]
    },
    "dependencies": {
