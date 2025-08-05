@@ -4,19 +4,7 @@ export default {
       "type-enum": [
          2,
          "always",
-         [
-            "feat", // Nova funcionalidade
-            "fix", // Correção de bug
-            "docs", // Documentação
-            "style", // Formatação (não afeta o código)
-            "refactor", // Refatoração
-            "perf", // Melhoria de performance
-            "test", // Adição/correção de testes
-            "chore", // Tarefas de build, configurações, etc.
-            "ci", // Configurações de CI/CD
-            "build", // Mudanças no sistema de build
-            "revert", // Reverter commit anterior
-         ],
+         ["feat", "fix", "docs", "style", "refactor", "perf", "test", "chore", "ci", "build", "revert"],
       ],
       "type-case": [2, "always", "lower-case"],
       "type-empty": [2, "never"],
