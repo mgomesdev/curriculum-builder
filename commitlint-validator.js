@@ -2,13 +2,14 @@ import fs from "fs";
 
 const commitMsgFile = process.argv[2];
 const commitMsg = fs.readFileSync(commitMsgFile, "utf8").trim();
-const typePattern = /^(feat|fix|docs|style|refactor|perf|test|chore|ci|build|revert)(\(.+\))?: .+/;
+const typePattern =
+  /^(feat|fix|docs|style|refactor|perf|test|chore|ci|build|revert)(\(.+\))?: .+/;
 const maxLength = 120;
 
 const errors = [];
 
 if (!typePattern.test(commitMsg)) {
-   errors.push(`
+  errors.push(`
 ❌ ERRO: Formato de commit inválido!
 
 📝 Formato esperado: type(scope): description
@@ -31,7 +32,7 @@ if (!typePattern.test(commitMsg)) {
 }
 
 if (commitMsg.length > maxLength) {
-   errors.push(`
+  errors.push(`
 ❌ ERRO: Mensagem muito longa! (${commitMsg.length}/${maxLength} caracteres)
 
 💡 Mantenha a mensagem concisa e objetiva.
@@ -39,7 +40,7 @@ if (commitMsg.length > maxLength) {
 }
 
 if (commitMsg.split(":")[1] && commitMsg.split(":")[1].trim().length === 0) {
-   errors.push(`
+  errors.push(`
 ❌ ERRO: Descrição não pode estar vazia!
 
 💡 Adicione uma descrição após os dois pontos.
@@ -47,10 +48,10 @@ if (commitMsg.split(":")[1] && commitMsg.split(":")[1].trim().length === 0) {
 }
 
 if (errors.length > 0) {
-   console.error("\n🚫 COMMIT REJEITADO\n");
-   errors.forEach((error) => console.error(error));
-   console.error("🔄 Corrija a mensagem e tente novamente.\n");
-   process.exit(1);
+  console.error("\n🚫 COMMIT REJEITADO\n");
+  errors.forEach((error) => console.error(error));
+  console.error("🔄 Corrija a mensagem e tente novamente.\n");
+  process.exit(1);
 }
 
 console.log("✅ Mensagem de commit válida!");
