@@ -1,2 +1,2 @@
 npx lint-staged
-pnpm exec prettier . --write
+pnpm exec prettier ./src --write
