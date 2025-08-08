@@ -1,9 +1,9 @@
-import fs from "fs";
+/* eslint-disable no-undef */
+import fs from 'fs';
 
 const commitMsgFile = process.argv[2];
-const commitMsg = fs.readFileSync(commitMsgFile, "utf8").trim();
-const typePattern =
-  /^(feat|fix|docs|style|refactor|perf|test|chore|ci|build|revert)(\(.+\))?: .+/;
+const commitMsg = fs.readFileSync(commitMsgFile, 'utf8').trim();
+const typePattern = /^(feat|fix|docs|style|refactor|perf|test|chore|ci|build|revert)(\(.+\))?: .+/;
 const maxLength = 120;
 
 const errors = [];
@@ -39,7 +39,7 @@ if (commitMsg.length > maxLength) {
 `);
 }
 
-if (commitMsg.split(":")[1] && commitMsg.split(":")[1].trim().length === 0) {
+if (commitMsg.split(':')[1] && commitMsg.split(':')[1].trim().length === 0) {
   errors.push(`
 ❌ ERRO: Descrição não pode estar vazia!
 
@@ -48,10 +48,10 @@ if (commitMsg.split(":")[1] && commitMsg.split(":")[1].trim().length === 0) {
 }
 
 if (errors.length > 0) {
-  console.error("\n🚫 COMMIT REJEITADO\n");
-  errors.forEach((error) => console.error(error));
-  console.error("🔄 Corrija a mensagem e tente novamente.\n");
+  console.error('\n🚫 COMMIT REJEITADO\n');
+  errors.forEach(error => console.error(error));
+  console.error('🔄 Corrija a mensagem e tente novamente.\n');
   process.exit(1);
 }
 
-console.log("✅ Mensagem de commit válida!");
+console.log('✅ Mensagem de commit válida!');

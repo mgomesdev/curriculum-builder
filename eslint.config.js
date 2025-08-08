@@ -12,7 +12,7 @@ export default [
   pluginReact.configs.flat['jsx-runtime'],
   prettierConfig,
   {
-    files: ['**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
+    files: ['src/**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
     plugins: {
       'react-hooks': reactHooks,
     },
