@@ -18,6 +18,13 @@ export default [
     },
     languageOptions: {
       globals: globals.browser,
+      parserOptions: {
+        ecmaVersion: 2021,
+        sourceType: 'module',
+        ecmaFeatures: {
+          jsx: true,
+        },
+      },
     },
     rules: {
       'no-console': 'warn',
