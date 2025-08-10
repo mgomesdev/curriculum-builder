@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.1.0](https://github.com/mgomesdev/curriculum-builder/compare/v1.0.0...v1.1.0) (2025-08-10)
+
+
+### Features
+
+* adiciona husky no package.json ([93034d1](https://github.com/mgomesdev/curriculum-builder/commit/93034d191ea4e16ba2c3c41cfd688e27615b01e8))
+* adiciona husky no package.json ([028c137](https://github.com/mgomesdev/curriculum-builder/commit/028c13739345a34b5b3476fab8762845bab1919b))
+* instala e configura vitest + testing library ([#45](https://github.com/mgomesdev/curriculum-builder/issues/45)) ([#46](https://github.com/mgomesdev/curriculum-builder/issues/46)) ([3e80e90](https://github.com/mgomesdev/curriculum-builder/commit/3e80e90ca7881e8a68ad1c6fe9965ae5152e3801))
+
 ## 1.0.0 (2025-08-08)
 
 
