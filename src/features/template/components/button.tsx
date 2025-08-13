@@ -1,4 +1,4 @@
-import { actions, type ButtonActions } from '@/features/template/actions';
+import { actions, type ButtonActions } from '@/features/template/actions/actions';
 import { forwardRef, useImperativeHandle, useState } from 'react';
 import type { ElementRendererProps } from './template-renderer';
 
