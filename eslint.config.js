@@ -31,6 +31,7 @@ export default [
       'react-hooks/rules-of-hooks': 'error',
       'react-hooks/exhaustive-deps': 'warn',
       'react/react-in-jsx-scope': 'off',
+      '@typescript-eslint/no-empty-object-type': 'off',
     },
     settings: {
       react: {
