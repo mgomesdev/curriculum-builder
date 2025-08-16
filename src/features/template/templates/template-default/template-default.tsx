@@ -1,10 +1,10 @@
 import React from 'react';
-import { data } from '../data/data';
-import { Heading } from '../components/heading';
-import { Paragraph } from '../components/paragraph';
+import type { TemplateDefaultData } from './initial-data';
+import { Heading } from '../../components/heading';
+import { Paragraph } from '../../components/paragraph';
 
 interface PageProps {
-  data: typeof data;
+  data: TemplateDefaultData;
 }
 
 export const TemplateDefault = ({ data }: PageProps) => {
@@ -58,7 +58,7 @@ export const TemplateDefault = ({ data }: PageProps) => {
 };
 
 interface SectionExperienceProps {
-  experiences: typeof data.experiences;
+  experiences: TemplateDefaultData['experiences'];
 }
 
 const SectionExperience = ({ experiences }: SectionExperienceProps) => {
@@ -99,7 +99,7 @@ const SectionExperience = ({ experiences }: SectionExperienceProps) => {
 };
 
 interface SectionEducationProps {
-  education: typeof data.education;
+  education: TemplateDefaultData['education'];
 }
 
 const SectionEducation = ({ education }: SectionEducationProps) => {
@@ -119,7 +119,7 @@ const SectionEducation = ({ education }: SectionEducationProps) => {
 };
 
 interface SectionCourseProps {
-  courses: typeof data.courses;
+  courses: TemplateDefaultData['courses'];
 }
 
 const SectionCourse = ({ courses }: SectionCourseProps) => {

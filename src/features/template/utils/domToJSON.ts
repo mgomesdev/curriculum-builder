@@ -35,3 +35,49 @@ const App = () => {
 };
 
  */
+
+/*
+
+
+// Função recursiva que transforma JSON em JSX
+const renderFromJSON = (node: any): React.ReactNode => {
+  if (typeof node === 'string') return node; // Texto simples
+
+  const { type, props = {}, children = [] } = node;
+
+  return React.createElement(
+    type,
+    props,
+    children.map((child: any, index: number) => <React.Fragment key={index}>{renderFromJSON(child)}</React.Fragment>)
+  );
+};
+
+// JSON representando a árvore
+const treeJSON = {
+  type: 'div',
+  props: { className: 'container', style: { border: '1px solid #ccc', padding: '16px' } },
+  children: [
+    {
+      type: 'div',
+      props: { style: { background: '#f0f0f0', padding: '8px' } },
+      children: [{ type: 'span', children: ['Elemento filho dentro de div'] }],
+    },
+    {
+      type: 'h1',
+      props: { style: { color: 'blue' } },
+      children: ['Meu Site Builder'],
+    },
+    {
+      type: 'p',
+      props: { style: { fontSize: '18px' } },
+      children: ['Esse parágrafo é renderizado a partir de JSON.'],
+    },
+  ],
+};
+
+
+const App = () => {
+  return <div>{renderFromJSON(treeJSON)}</div>;
+};
+
+*/

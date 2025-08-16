@@ -1,7 +1,7 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Page } from './features/template/page';
-import { data } from './features/template/data/data';
+import { data } from './features/template/templates/template-default/initial-data';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

@@ -1,4 +1,62 @@
-export const data = {
+interface Contact {
+  address: string;
+  postalCode: string;
+  neighborhood: string;
+  city: string;
+  state: string;
+  phones: string[];
+  birth: {
+    date: string;
+    maritalStatus: string;
+    age: number;
+  };
+  nationality: string;
+  birthplace: string;
+  drivingLicense: string;
+}
+
+interface Profile {
+  name: string;
+  role: string;
+  photo: string;
+  description: string;
+  contact: Contact;
+}
+
+interface Experience {
+  title: string;
+  location: string;
+  duration: string;
+  company: string;
+  mode: string;
+  responsibilities: string[];
+  skills: string[];
+}
+
+interface Education {
+  level: string;
+  course: string;
+  start: number;
+  end: number;
+  city: string;
+  institution: string;
+}
+
+interface Course {
+  title: string;
+  provider: string;
+  date: string;
+  modules: string[];
+}
+
+export interface TemplateDefaultData {
+  profile: Profile;
+  experiences: Experience[];
+  education: Education[];
+  courses: Course[];
+}
+
+export const data: TemplateDefaultData = {
   profile: {
     name: 'Matheus Gomes Rodrigues de Jesus',
     role: 'Desenvolvedor Frontend',
