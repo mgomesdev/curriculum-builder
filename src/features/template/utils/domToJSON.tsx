@@ -13,14 +13,16 @@ export const renderFromJSON = (node: JSONNode): React.ReactNode => {
   return React.createElement(
     node.type,
     props,
-    node.children?.map((child: JSONNode, i: number) => <React.Fragment key={i}>{renderFromJSON(child)}</React.Fragment>)
+    (node.children as JSONNode[])?.map((child: JSONNode, i: number) => (
+      <React.Fragment key={i}>{renderFromJSON(child)}</React.Fragment>
+    ))
   );
 };
 
 export interface JSONNode {
   type: string;
-  props: Record<string, object>;
-  children?: JSONNode[];
+  props: Record<string, string>;
+  children?: JSONNode[] | string[];
 }
 
 export const domToJSON = (el: Element) => {

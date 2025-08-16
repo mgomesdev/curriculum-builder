@@ -1,18 +1,18 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import type { TemplateDefaultData } from './initial-data';
 import { Heading } from '../../../components/heading';
 import { Paragraph } from '../../../components/paragraph';
 
-interface PageProps {
+interface TemplateDefaultProps {
   initialData: TemplateDefaultData;
 }
 
-export const TemplateDefault = ({ initialData }: PageProps) => {
+export const TemplateDefault = forwardRef<object, TemplateDefaultProps>(({ initialData }, ref) => {
   const { experiences, education, courses, profile } = initialData;
   const { contact } = profile;
 
   return (
-    <div className="container mx-auto flex flex-col py-56">
+    <div className="container mx-auto flex flex-col py-56" ref={ref as React.RefObject<HTMLDivElement>}>
       <header className="flex items-center gap-24">
         <img className="size-140 rounded-full" src="/foto/foto-pecege.jpeg" alt="" />
         <div className="flex flex-col">
@@ -55,7 +55,9 @@ export const TemplateDefault = ({ initialData }: PageProps) => {
       </main>
     </div>
   );
-};
+});
+
+TemplateDefault.displayName = 'TemplateDefault';
 
 interface SectionExperienceProps {
   experiences: TemplateDefaultData['experiences'];

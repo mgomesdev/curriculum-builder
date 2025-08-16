@@ -2,12 +2,12 @@
 
 #### Recursos
 
-- [] - sabe-se que eu tenho acesso a arvore do react através do .children
+- [x] - sabe-se que eu tenho acesso a arvore do react através do .children
 
 #### Fluxo
 
-- [] - sistema bate na api que responde com um json com a arvore do template com tudo montado.
-- [] - o sistema carrega esse json e mapeia para os componentes específicos e monta a arvore do react com tudo configurado (...props).
+- [x] - sistema bate na api que responde com um json com a arvore do template com tudo montado.
+- [x] - o sistema carrega esse json e mapeia para os componentes específicos e monta a arvore do react com tudo configurado (...props).
 - [] - O usuario tem a possibilidade de clicar em cima dos elementos da arvore e inicialmente pode fazer as seguintes mudanças:
   - [] - alterar o texto do elemento clicado.
   - [] - reordenar.
