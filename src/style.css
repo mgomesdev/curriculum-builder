@@ -1,4 +1,47 @@
 @import 'tailwindcss';
 
 @theme {
+  --default-font-family: 'Rubik', sans-serif;
+  --default-mono-font-family: 'IBMPlexMonoItalic', monospace;
+  --text-*: initial;
+  --text-12: 0.75rem;
+  --text-14: 0.875rem;
+  --text-16: 1rem;
+  --text-18: 1.125rem;
+  --text-20: 1.25rem;
+  --text-24: 1.5rem;
+  --text-28: 1.75rem;
+  --text-48: 3rem;
+  --text-52: 3.25rem;
+  --text-56: 3.5rem;
+  --gray-background: #0d0e0f;
+  --gray-dark: #282a2d;
+  --gray-text: #b0b2a8;
+  --text-white: #ffffff;
+  --text-purple: #aa88ff;
+  --text-green: #23d207;
+  --text-orange: #ff6622;
+  --text-yellow: #ffd300;
+  --text-blue: #119de6;
+  --text-pink: #ff6980;
+  --text-red: #ff2800;
+  --gradient-purple-top: #9b30f9;
+  --gradient-purple-bottom: #8b42f0;
+  --black: #000000;
+  --black-opacity-60: rgba(0, 0, 0, 0.6);
+  --spacing-*: initial;
+  --spacing-2: 0.125rem;
+  --spacing-4: 0.25rem;
+  --spacing-12: 0.75rem;
+  --spacing-14: 0.875rem;
+  --spacing-16: 1rem;
+  --spacing-18: 1.125rem;
+  --spacing-20: 1.25rem;
+  --spacing-24: 1.5rem;
+  --spacing-28: 1.75rem;
+  --spacing-48: 3rem;
+  --spacing-52: 3.25rem;
+  --spacing-56: 3.5rem;
+  --spacing-120: 7.5rem;
+  --spacing-140: 8.75rem;
 }
