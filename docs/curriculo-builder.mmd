@@ -9,7 +9,7 @@ class Template {
   +string[] tags
   +string category
   +Settings settings
-  +Page pages
+  +Page page
 }
 
 note for Template "Nível: Template<br>Configurações próprias<br>aplicável a toda a página do template"
@@ -42,9 +42,7 @@ class Typography {
 note for Typography "Tipografia para elementos padrões (h1, p, etc)<br>Pode ter customKey para outros elementos"
 
 class Page {
-  +string id
   +string title
-  +string slug
   +PageNode[] children
 }
 

@@ -161,3 +161,43 @@ export const initialData: TemplateDefaultData = {
     },
   ],
 };
+
+export const templateApiResponse = {
+  id: 'template-001',
+  name: 'Currículo Moderno',
+  thumbnailUrl: '/previews/template-001-thumb.png',
+  createdAt: '2025-08-16T12:00:00Z',
+  updatedAt: '2025-08-16T12:00:00Z',
+  version: '1.0.0',
+  tags: ['moderno', 'profissional', 'minimalista'],
+  category: 'Currículo',
+  settings: {
+    colors: {
+      primary: '#aa88ff',
+      secondary: '#23d207',
+      accent: '#ff6622',
+      neutral: '#282a2d',
+      surface: '#0d0e0f',
+      customKey: {},
+    },
+    typography: {
+      h1: 'text-56 font-bold',
+      p: 'text-28 font-sans',
+      customKey: {},
+    },
+    customKey: {},
+  },
+  page: {
+    title: 'Página Inicial',
+    children: [
+      {
+        type: 'div',
+        props: { class: 'container mx-auto flex flex-col gap-6' },
+        children: [
+          { type: 'h1', props: { class: '' }, children: [] },
+          { type: 'p', props: { class: '' }, children: [] },
+        ],
+      },
+    ],
+  },
+};
