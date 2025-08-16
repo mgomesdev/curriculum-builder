@@ -16,6 +16,10 @@ classDiagram
       +string category
       +string defaultPage
       +settings settings
+      +Seo meta
+      +Plugin[] plugins
+      +Scripts: Script[]
+      +string locale
       +pages: Page[]
     }
 
@@ -44,8 +48,8 @@ classDiagram
       +string id
       +string title
       +string slug
-      +Seo meta
       +PageNode[] children
+      +Seo meta
       +Plugin[] plugins
       +Scripts: Script[]
       +string locale
@@ -91,21 +95,31 @@ classDiagram
     
     Template "1" --> "N" Page : possui
     note for Page "template possui multiplas paginas"
+
+    Template "1" --> "N" Plugin : possui
+    note for Plugin "template possui varios plugins" 
+
+    Template "1" --> "N" Script : possui
+    note for Plugin "template possui varios scripts"  
+
+    Template "1" --> "N" Seo : possui
+    note for Seo "template possui várias configurações de SEO" 
    
     Page "1" --> "N" Plugin : possui
     note for Plugin "pagina possui varios plugins" 
 
     Page "1" --> "N" Script : possui
-    note for Plugin "pagina possui varios scripts" 
-   
-    Page "1" --> "N" PageNode : possui
-    note for Page "página possui multiplos nós de elementos"
-   
-    PageNode "1" --> "N" Props : possui
-    note for PageNode "nós de elementos possui várias props"
+    note for Plugin "pagina possui varios scripts"  
 
     Page "1" --> "N" Seo : possui
     note for Seo "pagina possui várias configurações de SEO" 
+
+    Page "1" --> "N" PageNode : possui
+    note for Page "página possui multiplos nós de elementos"   
+
+    PageNode "1" --> "N" Props : possui
+    note for PageNode "nós de elementos possui várias props"
+
 
 
     
