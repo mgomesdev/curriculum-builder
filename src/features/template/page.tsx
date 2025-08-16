@@ -1,6 +1,5 @@
-import { data } from './templates/template-default/initial-data';
-import { TemplateDefault } from './templates/template-default/template-default';
+import { TemplateEditor } from './editor/editor';
 
 export const Page = () => {
-  return <TemplateDefault data={data} />;
+  return <TemplateEditor />;
 };

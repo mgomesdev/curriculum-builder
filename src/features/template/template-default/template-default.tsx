@@ -1,14 +1,14 @@
 import React from 'react';
 import type { TemplateDefaultData } from './initial-data';
-import { Heading } from '../../components/heading';
-import { Paragraph } from '../../components/paragraph';
+import { Heading } from '../../../components/heading';
+import { Paragraph } from '../../../components/paragraph';
 
 interface PageProps {
-  data: TemplateDefaultData;
+  initialData: TemplateDefaultData;
 }
 
-export const TemplateDefault = ({ data }: PageProps) => {
-  const { experiences, education, courses, profile } = data;
+export const TemplateDefault = ({ initialData }: PageProps) => {
+  const { experiences, education, courses, profile } = initialData;
   const { contact } = profile;
 
   return (

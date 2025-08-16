@@ -56,7 +56,7 @@ export interface TemplateDefaultData {
   courses: Course[];
 }
 
-export const data: TemplateDefaultData = {
+export const initialData: TemplateDefaultData = {
   profile: {
     name: 'Matheus Gomes Rodrigues de Jesus',
     role: 'Desenvolvedor Frontend',
