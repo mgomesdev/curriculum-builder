@@ -1,0 +1,111 @@
+classDiagram
+    class Template {
+      +string id
+      +string name
+      +string previewUrl
+      +string thumbnailUrl
+      +string author
+      +string ownerId
+      +string[] contributors
+      +string createdAt
+      +string updatedAt
+      +string version
+      +boolean isPublic
+      +boolean isActive
+      +string[] tags
+      +string category
+      +string defaultPage
+      +settings settings
+      +pages: Page[]
+    }
+
+    class Settings {
+      +Colors colors
+      +Typography typography
+      +Record<> customKey
+    }
+
+    class Colors {
+      +string primary
+      +string secondary
+      +string accent
+      +string neutral
+      +string surface
+      +Record<> customKey
+    }
+
+    class Typography {
+      +string h1
+      +string p
+      +Record<> customKey
+    }
+
+    class Page {
+      +string id
+      +string title
+      +string slug
+      +Seo meta
+      +PageNode[] children
+      +Plugin[] plugins
+      +Scripts: Script[]
+      +string locale
+    }
+
+    class Seo {
+     +string title
+     +string description
+     +string canonical
+     +string[] keywords
+    }
+
+    class Script {
+     +string id
+     +string src
+    }
+
+    class Plugin {
+     +string type
+     +string id
+     +object config
+    }  
+
+    class PageNode {
+     +string type
+     +Props props
+     +PageNode[] children
+    }
+
+    class Props {
+     +string class
+    }
+
+    %% Relationships
+    Template "1" --> "1" Settings : possui 
+    note for Settings "template só pode possuir uma configuração"
+    
+    Settings "1" --> "N" Colors : possui 
+    note for Settings "settings possui várias colors"
+
+    Settings "1" --> "N" Typography : possui 
+    note for Settings "settings possui várias typograph"
+    
+    Template "1" --> "N" Page : possui
+    note for Page "template possui multiplas paginas"
+   
+    Page "1" --> "N" Plugin : possui
+    note for Plugin "pagina possui varios plugins" 
+
+    Page "1" --> "N" Script : possui
+    note for Plugin "pagina possui varios scripts" 
+   
+    Page "1" --> "N" PageNode : possui
+    note for Page "página possui multiplos nós de elementos"
+   
+    PageNode "1" --> "N" Props : possui
+    note for PageNode "nós de elementos possui várias props"
+
+    Page "1" --> "N" Seo : possui
+    note for Seo "pagina possui várias configurações de SEO" 
+
+
+    
