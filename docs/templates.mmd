@@ -1,4 +1,40 @@
 classDiagram
+    %% === Site Global ===
+    class Site {
+      +string id
+      +string name
+      +string previewUrl
+      +string thumbnailUrl
+      +string author
+      +string ownerId
+      +string[] contributors
+      +string createdAt
+      +string updatedAt
+      +string version
+      +boolean isPublic
+      +boolean isActive
+      +string[] tags
+      +string category
+      +string defaultPage
+      +Settings settings
+      +Seo meta
+      +Plugin[] plugins
+      +Script[] scripts
+      +string locale
+      +Template[] templates
+      +RouteTemplateMapping[] routeTemplateMap
+    }
+
+    note for Site "Nível: Global<br>Contém múltiplos templates<br>Contém plugins e scripts globais do site"
+
+    class RouteTemplateMapping {
+      +string route
+      +string templateId
+    }
+
+    note for RouteTemplateMapping "Mapeamento de rotas para templates<br>Permite rotas diferentes com templates distintos"
+
+    %% === Template Local ===
     class Template {
       +string id
       +string name
@@ -15,19 +51,24 @@ classDiagram
       +string[] tags
       +string category
       +string defaultPage
-      +settings settings
+      +Settings settings
       +Seo meta
       +Plugin[] plugins
-      +Scripts: Script[]
+      +Script[] scripts
       +string locale
-      +pages: Page[]
+      +Page[] pages
     }
 
+    note for Template "Nível: Template<br>Configurações próprias<br>Plugins e scripts aplicáveis a todas as páginas do template"
+
+    %% === Settings e Design Tokens ===
     class Settings {
       +Colors colors
       +Typography typography
-      +Record<> customKey
+      +Record<string, any> customKey
     }
+
+    note for Settings "Configurações de design baseado em Tailwind<br>Inclui cores, tipografia e customizações"
 
     class Colors {
       +string primary
@@ -35,15 +76,20 @@ classDiagram
       +string accent
       +string neutral
       +string surface
-      +Record<> customKey
+      +Record<string, string> customKey
     }
+
+    note for Colors "Cores categorizadas: primary, secondary, accent, neutral, surface<br>Pode conter cores customizadas"
 
     class Typography {
       +string h1
       +string p
-      +Record<> customKey
+      +Record<string, string> customKey
     }
 
+    note for Typography "Tipografia para elementos padrões (h1, p, etc)<br>Pode ter customKey para outros elementos"
+
+    %% === Página e elementos ===
     class Page {
       +string id
       +string title
@@ -51,75 +97,60 @@ classDiagram
       +PageNode[] children
       +Seo meta
       +Plugin[] plugins
-      +Scripts: Script[]
+      +Script[] scripts
       +string locale
     }
 
+    note for Page "Nível: Página<br>Cada página pode ter SEO, plugins, scripts próprios<br>Contém árvore de PageNodes (elementos)"
+
+    class PageNode {
+      +string type
+      +Props props
+      +PageNode[] children
+    }
+
+    note for PageNode "Nível: Elemento<br>Pode ter múltiplos children e props<br>Representa a árvore de elementos da página"
+
+    class Props {
+      +string class
+    }
+    
+    note for Props "Propriedades de cada elemento, como classes, ids, etc"
+
     class Seo {
-     +string title
-     +string description
-     +string canonical
-     +string[] keywords
+      +string title
+      +string description
+      +string canonical
+      +string[] keywords
     }
 
     class Script {
-     +string id
-     +string src
+      +string id
+      +string src
     }
 
     class Plugin {
-     +string type
-     +string id
-     +object config
+      +string type
+      +string id
+      +object config
     }  
 
-    class PageNode {
-     +string type
-     +Props props
-     +PageNode[] children
-    }
+    %% === Relationships ===
+    Site "1" --> "N" Template : possui
+    Site "1" --> "N" RouteTemplateMapping : mapeia rotas
 
-    class Props {
-     +string class
-    }
-
-    %% Relationships
-    Template "1" --> "1" Settings : possui 
-    note for Settings "template só pode possuir uma configuração"
-    
-    Settings "1" --> "N" Colors : possui 
-    note for Settings "settings possui várias colors"
-
-    Settings "1" --> "N" Typography : possui 
-    note for Settings "settings possui várias typograph"
-    
+    Template "1" --> "1" Settings : possui
     Template "1" --> "N" Page : possui
-    note for Page "template possui multiplas paginas"
-
     Template "1" --> "N" Plugin : possui
-    note for Plugin "template possui varios plugins" 
-
     Template "1" --> "N" Script : possui
-    note for Plugin "template possui varios scripts"  
+    Template "1" --> "1" Seo : possui
 
-    Template "1" --> "N" Seo : possui
-    note for Seo "template possui várias configurações de SEO" 
-   
     Page "1" --> "N" Plugin : possui
-    note for Plugin "pagina possui varios plugins" 
-
     Page "1" --> "N" Script : possui
-    note for Plugin "pagina possui varios scripts"  
-
-    Page "1" --> "N" Seo : possui
-    note for Seo "pagina possui várias configurações de SEO" 
-
+    Page "1" --> "1" Seo : possui
     Page "1" --> "N" PageNode : possui
-    note for Page "página possui multiplos nós de elementos"   
 
     PageNode "1" --> "N" Props : possui
-    note for PageNode "nós de elementos possui várias props"
 
-
-
-    
+    Settings "1" --> "1" Colors : possui
+    Settings "1" --> "1" Typography : possui
