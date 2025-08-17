@@ -1,0 +1,74 @@
+classDiagram
+class Template {
+  +string id
+  +string name
+  +string thumbnailUrl
+  +string createdAt
+  +string updatedAt
+  +string version
+  +string[] tags
+  +string category
+  +Settings settings
+  +Page page
+}
+
+note for Template "Nível: Template<br>Configurações próprias<br>aplicável a toda a página do template"
+
+class Settings {
+  +Colors colors
+  +Typography typography
+  +Record<string, any> customKey
+}
+
+note for Settings "Configurações de design baseado em Tailwind<br>Inclui cores, tipografia e customizações"
+
+class Colors {
+  +string primary
+  +string secondary
+  +string accent
+  +string neutral
+  +string surface
+  +Record<string, string> customKey
+}
+
+note for Colors "Cores categorizadas: primary, secondary, accent, neutral, surface<br>Pode conter cores customizadas"
+
+class Typography {
+  +string h1
+  +string p
+  +Record<string, string> customKey
+}
+
+note for Typography "Tipografia para elementos padrões (h1, p, etc)<br>Pode ter customKey para outros elementos"
+
+class Page {
+  +string title
+  +PageNode[] children
+}
+
+note for Page "Nível: Página<br>contém árvore de PageNodes (elementos)"
+
+class PageNode {
+  +string type
+  +Props props
+  +PageNode[] children
+}
+
+note for PageNode "Nível: Elemento<br>Pode ter múltiplos children e props<br>Representa a árvore de elementos da página"
+
+class Props {
+  +string class
+}
+
+note for Props "Propriedades de cada elemento, como classes, ids, etc"
+
+Template "1" *--> "1" Settings : possui
+Template "1" *--> "N" Page : possui
+
+Page "1" *--> "N" PageNode : possui
+
+PageNode "1" --> "1" Props : possui
+PageNode "1" *--> "N" PageNode : filhos
+
+Settings "1" --> "1" Colors : possui
+Settings "1" --> "1" Typography : possui

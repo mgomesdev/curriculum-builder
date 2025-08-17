@@ -1,0 +1,152 @@
+classDiagram
+class Site {
+  +string id
+  +string name
+  +string previewUrl
+  +string thumbnailUrl
+  +string author
+  +string ownerId
+  +string[] contributors
+  +string createdAt
+  +string updatedAt
+  +string version
+  +boolean isPublic
+  +boolean isActive
+  +string[] tags
+  +string category
+  +string defaultPage
+  +Settings settings
+  +Seo meta
+  +Plugin[] plugins
+  +Script[] scripts
+  +string locale
+  +Template[] templates
+  +RouteTemplateMapping[] routeTemplateMap
+}
+
+note for Site "Nível: Global<br>Contém múltiplos templates<br>Contém plugins e scripts globais do site"
+
+class RouteTemplateMapping {
+  +string route
+  +string templateId
+}
+
+note for RouteTemplateMapping "Mapeamento de rotas para templates<br>Permite rotas diferentes com templates distintos"
+
+class Template {
+  +string id
+  +string name
+  +string previewUrl
+  +string thumbnailUrl
+  +string author
+  +string ownerId
+  +string[] contributors
+  +string createdAt
+  +string updatedAt
+  +string version
+  +boolean isPublic
+  +boolean isActive
+  +string[] tags
+  +string category
+  +string defaultPage
+  +Settings settings
+  +Seo meta
+  +Plugin[] plugins
+  +Script[] scripts
+  +string locale
+  +Page[] pages
+}
+
+note for Template "Nível: Template<br>Configurações próprias<br>Plugins e scripts aplicáveis a todas as páginas do template"
+
+class Settings {
+  +Colors colors
+  +Typography typography
+  +Record<string, any> customKey
+}
+
+note for Settings "Configurações de design baseado em Tailwind<br>Inclui cores, tipografia e customizações"
+
+class Colors {
+  +string primary
+  +string secondary
+  +string accent
+  +string neutral
+  +string surface
+  +Record<string, string> customKey
+}
+
+note for Colors "Cores categorizadas: primary, secondary, accent, neutral, surface<br>Pode conter cores customizadas"
+
+class Typography {
+  +string h1
+  +string p
+  +Record<string, string> customKey
+}
+
+note for Typography "Tipografia para elementos padrões (h1, p, etc)<br>Pode ter customKey para outros elementos"
+
+class Seo {
+  +string title
+  +string description
+  +string canonical
+  +string[] keywords
+}
+
+class Script {
+  +string id
+  +string src
+}
+
+class Plugin {
+  +string type
+  +string id
+  +object config
+}
+
+class Page {
+  +string id
+  +string title
+  +string slug
+  +PageNode[] children
+  +Seo meta
+  +Plugin[] plugins
+  +Script[] scripts
+  +string locale
+}
+
+note for Page "Nível: Página<br>Cada página pode ter SEO, plugins, scripts próprios<br>Contém árvore de PageNodes (elementos)"
+
+class PageNode {
+  +string type
+  +Props props
+  +PageNode[] children
+}
+
+note for PageNode "Nível: Elemento<br>Pode ter múltiplos children e props<br>Representa a árvore de elementos da página"
+
+class Props {
+  +string class
+}
+
+note for Props "Propriedades de cada elemento, como classes, ids, etc"
+
+Site "1" o--> "N" Template : possui
+Site "1" *--> "N" RouteTemplateMapping : mapeia rotas
+
+Template "1" *--> "1" Settings : possui
+Template "1" *--> "N" Page : possui
+Template "1" o--> "N" Plugin : possui
+Template "1" o--> "N" Script : possui
+Template "1" --> "1" Seo : possui
+
+Page "1" o--> "N" Plugin : possui
+Page "1" o--> "N" Script : possui
+Page "1" --> "1" Seo : possui
+Page "1" *--> "N" PageNode : possui
+
+PageNode "1" --> "1" Props : possui
+PageNode "1" *--> "N" PageNode : filhos
+
+Settings "1" --> "1" Colors : possui
+Settings "1" --> "1" Typography : possui
