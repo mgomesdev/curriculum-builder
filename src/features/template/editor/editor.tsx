@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
-import { initialData, templateApiResponse } from '../template-default/initial-data';
-import { TemplateDefault } from '../template-default/template-default';
+import { fakeTemplateApiResponse, initialTemplateData } from '../creator/initial-template-data';
+import { InitialTemplate } from '../creator/initial-template';
 import { domToJSON, renderFromJSON } from '../utils/domToJSON';
 import type { Template } from '../dto/template-dto';
 
@@ -17,10 +17,11 @@ export const TemplateEditor = () => {
   return (
     <>
       <button onClick={handleDomToJSON}>domTOJson</button>
-      <TemplateDefault initialData={initialData} />
-      <div ref={divRef}>
-        <RenderFromJSON template={templateApiResponse} />
-      </div>
+      <InitialTemplate initialData={initialTemplateData} ref={divRef} />
+
+      <hr />
+
+      <RenderFromJSON template={fakeTemplateApiResponse} />
     </>
   );
 };
@@ -30,12 +31,9 @@ const RenderFromJSON = ({ template }: { template: Template }) => {
 
   return (
     <>
-      {template.page.children &&
-        template.page.children.map((child, index) => {
-          console.log(child);
-
-          return <React.Fragment key={index}>{renderFromJSON(child)}</React.Fragment>;
-        })}
+      {template.page.children.map((child, index) => (
+        <React.Fragment key={index}>{renderFromJSON(child)}</React.Fragment>
+      ))}
     </>
   );
 };

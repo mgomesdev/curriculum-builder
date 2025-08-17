@@ -1,13 +1,13 @@
 import React, { forwardRef } from 'react';
-import type { TemplateDefaultData } from './initial-data';
+import type { InitialTemplateData } from './initial-template-data';
 import { Heading } from '../../../components/heading';
 import { Paragraph } from '../../../components/paragraph';
 
-interface TemplateDefaultProps {
-  initialData: TemplateDefaultData;
+interface InitialTemplateProps {
+  initialData: InitialTemplateData;
 }
 
-export const TemplateDefault = forwardRef<object, TemplateDefaultProps>(({ initialData }, ref) => {
+export const InitialTemplate = forwardRef<object, InitialTemplateProps>(({ initialData }, ref) => {
   const { experiences, education, courses, profile } = initialData;
   const { contact } = profile;
 
@@ -57,10 +57,10 @@ export const TemplateDefault = forwardRef<object, TemplateDefaultProps>(({ initi
   );
 });
 
-TemplateDefault.displayName = 'TemplateDefault';
+InitialTemplate.displayName = 'InitialTemplate';
 
 interface SectionExperienceProps {
-  experiences: TemplateDefaultData['experiences'];
+  experiences: InitialTemplateData['experiences'];
 }
 
 const SectionExperience = ({ experiences }: SectionExperienceProps) => {
@@ -101,7 +101,7 @@ const SectionExperience = ({ experiences }: SectionExperienceProps) => {
 };
 
 interface SectionEducationProps {
-  education: TemplateDefaultData['education'];
+  education: InitialTemplateData['education'];
 }
 
 const SectionEducation = ({ education }: SectionEducationProps) => {
@@ -121,7 +121,7 @@ const SectionEducation = ({ education }: SectionEducationProps) => {
 };
 
 interface SectionCourseProps {
-  courses: TemplateDefaultData['courses'];
+  courses: InitialTemplateData['courses'];
 }
 
 const SectionCourse = ({ courses }: SectionCourseProps) => {
