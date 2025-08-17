@@ -1,3 +1,5 @@
+import type { Template } from '../dto/template-dto';
+
 interface Contact {
   address: string;
   postalCode: string;
@@ -162,7 +164,7 @@ export const initialData: TemplateDefaultData = {
   ],
 };
 
-export const templateApiResponse = {
+export const templateApiResponse: Template = {
   id: 'template-001',
   name: 'Currículo Moderno',
   thumbnailUrl: '/previews/template-001-thumb.png',
@@ -194,8 +196,15 @@ export const templateApiResponse = {
         type: 'div',
         props: { class: 'container mx-auto flex flex-col gap-6' },
         children: [
-          { type: 'h1', props: { class: '' }, children: [] },
-          { type: 'p', props: { class: '' }, children: [] },
+          {
+            type: 'h1',
+            props: { class: 'bg-amber-600 h-[20px]' },
+            children: [],
+          },
+          {
+            type: 'p',
+            props: { class: '' },
+          },
         ],
       },
     ],
