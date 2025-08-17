@@ -23,7 +23,7 @@ const TemplateEditorContent = () => {
     }
   };
 
-  const handleDownlodPDF = () => console.log('TODO: download PDF');
+  const handleDownloadPDF = () => console.log('TODO: download PDF');
 
   return (
     <>
@@ -37,7 +37,7 @@ const TemplateEditorContent = () => {
         <button className="h-48 cursor-pointer rounded-2xl bg-green-300 px-20" onClick={handleSave}>
           Salvar
         </button>
-        <button onClick={handleDownlodPDF} className="h-48 cursor-pointer rounded-2xl bg-fuchsia-300 px-20">
+        <button onClick={handleDownloadPDF} className="h-48 cursor-pointer rounded-2xl bg-fuchsia-300 px-20">
           Download
         </button>
       </header>

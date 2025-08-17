@@ -28,14 +28,10 @@ export const renderFromJSON = (node: PageNode): React.ReactNode => {
           className: `${child.props.class} border-green-500 border-2 hover:border-blue-500 hover:border-2 transition-all duration-200 ease-in-out`,
         };
 
+        const elementType: PageNode['type'][] = ['strong', 'span', 'li', 'h1', 'p'];
+
         const elementWithEdit =
-          (isEdit && child.type === 'p') ||
-          (isEdit && child.type === 'h1') ||
-          (isEdit && child.type === 'span') ||
-          (isEdit && child.type === 'li') ||
-          (isEdit && child.type === 'strong')
-            ? React.cloneElement(element, editableProps)
-            : element;
+          isEdit && elementType.includes(child.type) ? React.cloneElement(element, editableProps) : element;
 
         return elementWithEdit;
       }
