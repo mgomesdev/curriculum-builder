@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
-import { fakeTemplateApiResponse, initialTemplateData } from '../creator/initial-template-data';
-import { InitialTemplate } from '../creator/initial-template';
+import { fakeTemplateApiResponse, templateBuilderData } from '../builder/template-builder-data';
+import { TemplateBuilder } from '../builder/template-builder';
 import { domToJSON, renderFromJSON } from '../utils/domToJSON';
 import type { Template } from '../dto/template-dto';
 
@@ -17,7 +17,7 @@ export const TemplateEditor = () => {
   return (
     <>
       <button onClick={handleDomToJSON}>domTOJson</button>
-      <InitialTemplate initialData={initialTemplateData} ref={divRef} />
+      <TemplateBuilder initialData={templateBuilderData} ref={divRef} />
 
       <hr />
 
