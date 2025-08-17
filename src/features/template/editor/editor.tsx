@@ -19,7 +19,7 @@ const TemplateEditorContent = () => {
   const handleSave = () => {
     if (templateRef?.current) {
       const json = domToJSON(templateRef.current);
-      console.log(json);
+      console.log(json.children);
     }
   };
 
@@ -36,18 +36,20 @@ const TemplateEditorContent = () => {
         {/* TODO: instalar tailwind merge para classes */}
         <button
           onClick={handleEdit}
-          className={`h-48 cursor-pointer rounded-2xl ${isEdit ? 'bg-amber-200' : 'bg-blue-400'} px-20`}>
-          {isEdit ? 'Finalizar' : 'Editar'}
+          className={`h-48 cursor-pointer rounded-2xl ${isEdit ? 'bg-green-200' : 'bg-blue-400'} px-20`}>
+          {isEdit ? 'Salvar' : 'Editar'}
         </button>
 
-        <button onClick={handleDownloadPDF} className="h-48 cursor-pointer rounded-2xl bg-fuchsia-300 px-20">
-          Download
-        </button>
+        {!isEdit && (
+          <button onClick={handleDownloadPDF} className="h-48 cursor-pointer rounded-2xl bg-fuchsia-300 px-20">
+            Download
+          </button>
+        )}
       </header>
 
       <div ref={templateRef}>
         {fakeTemplateApiResponse.page.children.map((child, index) => (
-          <div key={index}>{renderFromJSON(child)}</div>
+          <React.Fragment key={index}>{renderFromJSON(child)}</React.Fragment>
         ))}
       </div>
     </>
