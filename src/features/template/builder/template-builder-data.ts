@@ -254,13 +254,13 @@ export const fakeTemplateApiResponse: Template = {
       {
         type: 'div',
         props: {
-          class: 'container mx-auto flex flex-col py-56',
+          class: 'mx-auto flex max-w-[64rem] flex-col px-20 py-56',
         },
         children: [
           {
             type: 'header',
             props: {
-              class: 'flex items-center gap-24',
+              class: 'sm:px-none flex flex-col items-center gap-24 sm:flex-row',
             },
             children: [
               {
@@ -274,13 +274,13 @@ export const fakeTemplateApiResponse: Template = {
               {
                 type: 'div',
                 props: {
-                  class: 'flex flex-col',
+                  class: 'flex flex-col text-center sm:text-left',
                 },
                 children: [
                   {
                     type: 'h1',
                     props: {
-                      class: 'text-56 font-bold',
+                      class: 'text-40 font-bold lg:text-48 lg:text-nowrap',
                     },
                     children: [
                       {
@@ -310,13 +310,13 @@ export const fakeTemplateApiResponse: Template = {
           {
             type: 'main',
             props: {
-              class: 'mt-24 flex justify-between gap-2',
+              class: 'mt-48 flex flex-col justify-between gap-2 sm:mt-28 lg:flex-row',
             },
             children: [
               {
                 type: 'aside',
                 props: {
-                  class: 'flex flex-1/2 flex-col gap-12 px-4',
+                  class: 'flex flex-col gap-12 px-4 sm:flex-1/2 lg:pr-48',
                 },
                 children: [
                   {
@@ -387,9 +387,7 @@ export const fakeTemplateApiResponse: Template = {
                               },
                               {
                                 type: 'span',
-                                props: {
-                                  class: 'mr-4',
-                                },
+                                props: {},
                                 children: [
                                   {
                                     type: '#text',
@@ -488,7 +486,7 @@ export const fakeTemplateApiResponse: Template = {
                       {
                         type: 'p',
                         props: {
-                          class: 'mt-12',
+                          class: 'mt-12 break-words',
                         },
                         children: [
                           {
@@ -512,9 +510,7 @@ export const fakeTemplateApiResponse: Template = {
                           },
                           {
                             type: 'span',
-                            props: {
-                              class: 'mr-4',
-                            },
+                            props: {},
                             children: [
                               {
                                 type: '#text',
@@ -530,9 +526,7 @@ export const fakeTemplateApiResponse: Template = {
                           },
                           {
                             type: 'span',
-                            props: {
-                              class: 'mr-4',
-                            },
+                            props: {},
                             children: [
                               {
                                 type: '#text',
@@ -548,9 +542,7 @@ export const fakeTemplateApiResponse: Template = {
                           },
                           {
                             type: 'span',
-                            props: {
-                              class: 'mr-4',
-                            },
+                            props: {},
                             children: [
                               {
                                 type: '#text',
@@ -566,9 +558,7 @@ export const fakeTemplateApiResponse: Template = {
                           },
                           {
                             type: 'span',
-                            props: {
-                              class: 'mr-4',
-                            },
+                            props: {},
                             children: [
                               {
                                 type: '#text',
@@ -584,9 +574,7 @@ export const fakeTemplateApiResponse: Template = {
                           },
                           {
                             type: 'span',
-                            props: {
-                              class: 'mr-4',
-                            },
+                            props: {},
                             children: [
                               {
                                 type: '#text',
@@ -602,9 +590,7 @@ export const fakeTemplateApiResponse: Template = {
                           },
                           {
                             type: 'span',
-                            props: {
-                              class: 'mr-4',
-                            },
+                            props: {},
                             children: [
                               {
                                 type: '#text',
@@ -620,9 +606,7 @@ export const fakeTemplateApiResponse: Template = {
                           },
                           {
                             type: 'span',
-                            props: {
-                              class: 'mr-4',
-                            },
+                            props: {},
                             children: [
                               {
                                 type: '#text',
@@ -638,9 +622,7 @@ export const fakeTemplateApiResponse: Template = {
                           },
                           {
                             type: 'span',
-                            props: {
-                              class: 'mr-4',
-                            },
+                            props: {},
                             children: [
                               {
                                 type: '#text',
@@ -656,9 +638,7 @@ export const fakeTemplateApiResponse: Template = {
                           },
                           {
                             type: 'span',
-                            props: {
-                              class: 'mr-4',
-                            },
+                            props: {},
                             children: [
                               {
                                 type: '#text',
@@ -674,9 +654,7 @@ export const fakeTemplateApiResponse: Template = {
                           },
                           {
                             type: 'span',
-                            props: {
-                              class: 'mr-4',
-                            },
+                            props: {},
                             children: [
                               {
                                 type: '#text',
@@ -692,9 +670,7 @@ export const fakeTemplateApiResponse: Template = {
                           },
                           {
                             type: 'span',
-                            props: {
-                              class: 'mr-4',
-                            },
+                            props: {},
                             children: [
                               {
                                 type: '#text',
@@ -710,9 +686,7 @@ export const fakeTemplateApiResponse: Template = {
                           },
                           {
                             type: 'span',
-                            props: {
-                              class: 'mr-4',
-                            },
+                            props: {},
                             children: [
                               {
                                 type: '#text',
@@ -728,9 +702,7 @@ export const fakeTemplateApiResponse: Template = {
                           },
                           {
                             type: 'span',
-                            props: {
-                              class: 'mr-4',
-                            },
+                            props: {},
                             children: [
                               {
                                 type: '#text',
@@ -746,9 +718,7 @@ export const fakeTemplateApiResponse: Template = {
                           },
                           {
                             type: 'span',
-                            props: {
-                              class: 'mr-4',
-                            },
+                            props: {},
                             children: [
                               {
                                 type: '#text',
@@ -764,9 +734,7 @@ export const fakeTemplateApiResponse: Template = {
                           },
                           {
                             type: 'span',
-                            props: {
-                              class: 'mr-4',
-                            },
+                            props: {},
                             children: [
                               {
                                 type: '#text',
@@ -782,9 +750,7 @@ export const fakeTemplateApiResponse: Template = {
                           },
                           {
                             type: 'span',
-                            props: {
-                              class: 'mr-4',
-                            },
+                            props: {},
                             children: [
                               {
                                 type: '#text',
@@ -800,9 +766,7 @@ export const fakeTemplateApiResponse: Template = {
                           },
                           {
                             type: 'span',
-                            props: {
-                              class: 'mr-4',
-                            },
+                            props: {},
                             children: [
                               {
                                 type: '#text',
@@ -818,9 +782,7 @@ export const fakeTemplateApiResponse: Template = {
                           },
                           {
                             type: 'span',
-                            props: {
-                              class: 'mr-4',
-                            },
+                            props: {},
                             children: [
                               {
                                 type: '#text',
@@ -836,9 +798,7 @@ export const fakeTemplateApiResponse: Template = {
                           },
                           {
                             type: 'span',
-                            props: {
-                              class: 'mr-4',
-                            },
+                            props: {},
                             children: [
                               {
                                 type: '#text',
@@ -854,9 +814,7 @@ export const fakeTemplateApiResponse: Template = {
                           },
                           {
                             type: 'span',
-                            props: {
-                              class: 'mr-4',
-                            },
+                            props: {},
                             children: [
                               {
                                 type: '#text',
@@ -872,9 +830,7 @@ export const fakeTemplateApiResponse: Template = {
                           },
                           {
                             type: 'span',
-                            props: {
-                              class: 'mr-4',
-                            },
+                            props: {},
                             children: [
                               {
                                 type: '#text',
@@ -890,9 +846,7 @@ export const fakeTemplateApiResponse: Template = {
                           },
                           {
                             type: 'span',
-                            props: {
-                              class: 'mr-4',
-                            },
+                            props: {},
                             children: [
                               {
                                 type: '#text',
@@ -908,9 +862,7 @@ export const fakeTemplateApiResponse: Template = {
                           },
                           {
                             type: 'span',
-                            props: {
-                              class: 'mr-4',
-                            },
+                            props: {},
                             children: [
                               {
                                 type: '#text',
@@ -926,9 +878,7 @@ export const fakeTemplateApiResponse: Template = {
                           },
                           {
                             type: 'span',
-                            props: {
-                              class: 'mr-4',
-                            },
+                            props: {},
                             children: [
                               {
                                 type: '#text',
@@ -944,9 +894,7 @@ export const fakeTemplateApiResponse: Template = {
                           },
                           {
                             type: 'span',
-                            props: {
-                              class: 'mr-4',
-                            },
+                            props: {},
                             children: [
                               {
                                 type: '#text',
@@ -962,9 +910,7 @@ export const fakeTemplateApiResponse: Template = {
                           },
                           {
                             type: 'span',
-                            props: {
-                              class: 'mr-4',
-                            },
+                            props: {},
                             children: [
                               {
                                 type: '#text',
@@ -980,9 +926,7 @@ export const fakeTemplateApiResponse: Template = {
                           },
                           {
                             type: 'span',
-                            props: {
-                              class: 'mr-4',
-                            },
+                            props: {},
                             children: [
                               {
                                 type: '#text',
@@ -998,9 +942,7 @@ export const fakeTemplateApiResponse: Template = {
                           },
                           {
                             type: 'span',
-                            props: {
-                              class: 'mr-4',
-                            },
+                            props: {},
                             children: [
                               {
                                 type: '#text',
@@ -1256,15 +1198,28 @@ export const fakeTemplateApiResponse: Template = {
               {
                 type: 'aside',
                 props: {
-                  class: 'mt-24 flex-1/2',
+                  class: 'mt-24 flex flex-col gap-24 sm:flex-1/6 lg:mt-[0]',
                 },
                 children: [
                   {
                     type: 'section',
                     props: {
-                      class: 'flex flex-col pl-56',
+                      class: 'flex flex-col',
                     },
                     children: [
+                      {
+                        type: 'h1',
+                        props: {
+                          class: 'mb-12 text-24',
+                        },
+                        children: [
+                          {
+                            type: '#text',
+                            props: {},
+                            children: ['Contato'],
+                          },
+                        ],
+                      },
                       {
                         type: 'ul',
                         props: {},
@@ -1342,6 +1297,22 @@ export const fakeTemplateApiResponse: Template = {
                               {
                                 type: '#text',
                                 props: {},
+                                children: ['Email:'],
+                              },
+                              {
+                                type: '#text',
+                                props: {},
+                                children: ['matheusgomes1203@hotmail.com'],
+                              },
+                            ],
+                          },
+                          {
+                            type: 'li',
+                            props: {},
+                            children: [
+                              {
+                                type: '#text',
+                                props: {},
                                 children: ['Nacionalidade:'],
                               },
                               {
@@ -1380,6 +1351,964 @@ export const fakeTemplateApiResponse: Template = {
                                 type: '#text',
                                 props: {},
                                 children: ['A/B'],
+                              },
+                            ],
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                  {
+                    type: 'section',
+                    props: {
+                      class: 'flex flex-col',
+                    },
+                    children: [
+                      {
+                        type: 'h1',
+                        props: {
+                          class: 'mb-12 text-24',
+                        },
+                        children: [
+                          {
+                            type: '#text',
+                            props: {},
+                            children: ['Competências'],
+                          },
+                        ],
+                      },
+                      {
+                        type: 'ul',
+                        props: {},
+                        children: [
+                          {
+                            type: 'li',
+                            props: {},
+                            children: [
+                              {
+                                type: '#text',
+                                props: {},
+                                children: ['Desenvolvimento de interfaces responsivas'],
+                              },
+                            ],
+                          },
+                          {
+                            type: 'li',
+                            props: {},
+                            children: [
+                              {
+                                type: '#text',
+                                props: {},
+                                children: ['Integração com API Rest'],
+                              },
+                            ],
+                          },
+                          {
+                            type: 'li',
+                            props: {},
+                            children: [
+                              {
+                                type: '#text',
+                                props: {},
+                                children: ['Expericência com metologoas ágeis'],
+                              },
+                            ],
+                          },
+                          {
+                            type: 'li',
+                            props: {},
+                            children: [
+                              {
+                                type: '#text',
+                                props: {},
+                                children: ['Clean Code'],
+                              },
+                            ],
+                          },
+                          {
+                            type: 'li',
+                            props: {},
+                            children: [
+                              {
+                                type: '#text',
+                                props: {},
+                                children: ['Trabalho em equipe'],
+                              },
+                            ],
+                          },
+                          {
+                            type: 'li',
+                            props: {},
+                            children: [
+                              {
+                                type: '#text',
+                                props: {},
+                                children: ['Proatividade'],
+                              },
+                            ],
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                  {
+                    type: 'section',
+                    props: {
+                      class: 'flex flex-col',
+                    },
+                    children: [
+                      {
+                        type: 'h1',
+                        props: {
+                          class: 'mb-12 text-24',
+                        },
+                        children: [
+                          {
+                            type: '#text',
+                            props: {},
+                            children: ['Ferramentas e Tecnologias'],
+                          },
+                        ],
+                      },
+                      {
+                        type: 'ul',
+                        props: {},
+                        children: [
+                          {
+                            type: 'li',
+                            props: {
+                              class: 'inline',
+                            },
+                            children: [
+                              {
+                                type: '#text',
+                                props: {},
+                                children: ['Html5'],
+                              },
+                              {
+                                type: '#text',
+                                props: {},
+                                children: [','],
+                              },
+                            ],
+                          },
+                          {
+                            type: 'li',
+                            props: {
+                              class: 'inline',
+                            },
+                            children: [
+                              {
+                                type: '#text',
+                                props: {},
+                                children: ['Css3'],
+                              },
+                              {
+                                type: '#text',
+                                props: {},
+                                children: [','],
+                              },
+                            ],
+                          },
+                          {
+                            type: 'li',
+                            props: {
+                              class: 'inline',
+                            },
+                            children: [
+                              {
+                                type: '#text',
+                                props: {},
+                                children: ['Sass'],
+                              },
+                              {
+                                type: '#text',
+                                props: {},
+                                children: [','],
+                              },
+                            ],
+                          },
+                          {
+                            type: 'li',
+                            props: {
+                              class: 'inline',
+                            },
+                            children: [
+                              {
+                                type: '#text',
+                                props: {},
+                                children: ['BEM'],
+                              },
+                              {
+                                type: '#text',
+                                props: {},
+                                children: [','],
+                              },
+                            ],
+                          },
+                          {
+                            type: 'li',
+                            props: {
+                              class: 'inline',
+                            },
+                            children: [
+                              {
+                                type: '#text',
+                                props: {},
+                                children: ['Javascript'],
+                              },
+                              {
+                                type: '#text',
+                                props: {},
+                                children: [','],
+                              },
+                            ],
+                          },
+                          {
+                            type: 'li',
+                            props: {
+                              class: 'inline',
+                            },
+                            children: [
+                              {
+                                type: '#text',
+                                props: {},
+                                children: ['Typescript'],
+                              },
+                              {
+                                type: '#text',
+                                props: {},
+                                children: [','],
+                              },
+                            ],
+                          },
+                          {
+                            type: 'li',
+                            props: {
+                              class: 'inline',
+                            },
+                            children: [
+                              {
+                                type: '#text',
+                                props: {},
+                                children: ['React.js'],
+                              },
+                              {
+                                type: '#text',
+                                props: {},
+                                children: [','],
+                              },
+                            ],
+                          },
+                          {
+                            type: 'li',
+                            props: {
+                              class: 'inline',
+                            },
+                            children: [
+                              {
+                                type: '#text',
+                                props: {},
+                                children: ['Next.js'],
+                              },
+                              {
+                                type: '#text',
+                                props: {},
+                                children: [','],
+                              },
+                            ],
+                          },
+                          {
+                            type: 'li',
+                            props: {
+                              class: 'inline',
+                            },
+                            children: [
+                              {
+                                type: '#text',
+                                props: {},
+                                children: ['React Hooks'],
+                              },
+                              {
+                                type: '#text',
+                                props: {},
+                                children: [','],
+                              },
+                            ],
+                          },
+                          {
+                            type: 'li',
+                            props: {
+                              class: 'inline',
+                            },
+                            children: [
+                              {
+                                type: '#text',
+                                props: {},
+                                children: ['Testes automatizados'],
+                              },
+                              {
+                                type: '#text',
+                                props: {},
+                                children: [','],
+                              },
+                            ],
+                          },
+                          {
+                            type: 'li',
+                            props: {
+                              class: 'inline',
+                            },
+                            children: [
+                              {
+                                type: '#text',
+                                props: {},
+                                children: ['Toolings (Webpack, gulp, vite, esbuild, rollup'],
+                              },
+                              {
+                                type: '#text',
+                                props: {},
+                                children: [','],
+                              },
+                            ],
+                          },
+                          {
+                            type: 'li',
+                            props: {
+                              class: 'inline',
+                            },
+                            children: [
+                              {
+                                type: '#text',
+                                props: {},
+                                children: ['Styled-components'],
+                              },
+                              {
+                                type: '#text',
+                                props: {},
+                                children: [','],
+                              },
+                            ],
+                          },
+                          {
+                            type: 'li',
+                            props: {
+                              class: 'inline',
+                            },
+                            children: [
+                              {
+                                type: '#text',
+                                props: {},
+                                children: ['Atomic Design'],
+                              },
+                              {
+                                type: '#text',
+                                props: {},
+                                children: [','],
+                              },
+                            ],
+                          },
+                          {
+                            type: 'li',
+                            props: {
+                              class: 'inline',
+                            },
+                            children: [
+                              {
+                                type: '#text',
+                                props: {},
+                                children: ['TDD'],
+                              },
+                              {
+                                type: '#text',
+                                props: {},
+                                children: [','],
+                              },
+                            ],
+                          },
+                          {
+                            type: 'li',
+                            props: {
+                              class: 'inline',
+                            },
+                            children: [
+                              {
+                                type: '#text',
+                                props: {},
+                                children: ['Jest'],
+                              },
+                              {
+                                type: '#text',
+                                props: {},
+                                children: [','],
+                              },
+                            ],
+                          },
+                          {
+                            type: 'li',
+                            props: {
+                              class: 'inline',
+                            },
+                            children: [
+                              {
+                                type: '#text',
+                                props: {},
+                                children: ['Cypress'],
+                              },
+                              {
+                                type: '#text',
+                                props: {},
+                                children: [','],
+                              },
+                            ],
+                          },
+                          {
+                            type: 'li',
+                            props: {
+                              class: 'inline',
+                            },
+                            children: [
+                              {
+                                type: '#text',
+                                props: {},
+                                children: ['React Testing Library'],
+                              },
+                              {
+                                type: '#text',
+                                props: {},
+                                children: [','],
+                              },
+                            ],
+                          },
+                          {
+                            type: 'li',
+                            props: {
+                              class: 'inline',
+                            },
+                            children: [
+                              {
+                                type: '#text',
+                                props: {},
+                                children: ['CI/CD'],
+                              },
+                              {
+                                type: '#text',
+                                props: {},
+                                children: [','],
+                              },
+                            ],
+                          },
+                          {
+                            type: 'li',
+                            props: {
+                              class: 'inline',
+                            },
+                            children: [
+                              {
+                                type: '#text',
+                                props: {},
+                                children: ['Redux'],
+                              },
+                              {
+                                type: '#text',
+                                props: {},
+                                children: [','],
+                              },
+                            ],
+                          },
+                          {
+                            type: 'li',
+                            props: {
+                              class: 'inline',
+                            },
+                            children: [
+                              {
+                                type: '#text',
+                                props: {},
+                                children: ['Git/Github'],
+                              },
+                              {
+                                type: '#text',
+                                props: {},
+                                children: [','],
+                              },
+                            ],
+                          },
+                          {
+                            type: 'li',
+                            props: {
+                              class: 'inline',
+                            },
+                            children: [
+                              {
+                                type: '#text',
+                                props: {},
+                                children: ['Linux'],
+                              },
+                              {
+                                type: '#text',
+                                props: {},
+                                children: [','],
+                              },
+                            ],
+                          },
+                          {
+                            type: 'li',
+                            props: {
+                              class: 'inline',
+                            },
+                            children: [
+                              {
+                                type: '#text',
+                                props: {},
+                                children: ['Bootstrap'],
+                              },
+                              {
+                                type: '#text',
+                                props: {},
+                                children: [','],
+                              },
+                            ],
+                          },
+                          {
+                            type: 'li',
+                            props: {
+                              class: 'inline',
+                            },
+                            children: [
+                              {
+                                type: '#text',
+                                props: {},
+                                children: ['Figma'],
+                              },
+                              {
+                                type: '#text',
+                                props: {},
+                                children: [','],
+                              },
+                            ],
+                          },
+                          {
+                            type: 'li',
+                            props: {
+                              class: 'inline',
+                            },
+                            children: [
+                              {
+                                type: '#text',
+                                props: {},
+                                children: ['Storybook'],
+                              },
+                              {
+                                type: '#text',
+                                props: {},
+                                children: [','],
+                              },
+                            ],
+                          },
+                          {
+                            type: 'li',
+                            props: {
+                              class: 'inline',
+                            },
+                            children: [
+                              {
+                                type: '#text',
+                                props: {},
+                                children: ['ApisRestfull'],
+                              },
+                              {
+                                type: '#text',
+                                props: {},
+                                children: [','],
+                              },
+                            ],
+                          },
+                          {
+                            type: 'li',
+                            props: {
+                              class: 'inline',
+                            },
+                            children: [
+                              {
+                                type: '#text',
+                                props: {},
+                                children: ['Web Design Responsivo'],
+                              },
+                              {
+                                type: '#text',
+                                props: {},
+                                children: [','],
+                              },
+                            ],
+                          },
+                          {
+                            type: 'li',
+                            props: {
+                              class: 'inline',
+                            },
+                            children: [
+                              {
+                                type: '#text',
+                                props: {},
+                                children: ['Acessibilidade e SEO'],
+                              },
+                              {
+                                type: '#text',
+                                props: {},
+                                children: [','],
+                              },
+                            ],
+                          },
+                          {
+                            type: 'li',
+                            props: {
+                              class: 'inline',
+                            },
+                            children: [
+                              {
+                                type: '#text',
+                                props: {},
+                                children: ['Flux'],
+                              },
+                              {
+                                type: '#text',
+                                props: {},
+                                children: [','],
+                              },
+                            ],
+                          },
+                          {
+                            type: 'li',
+                            props: {
+                              class: 'inline',
+                            },
+                            children: [
+                              {
+                                type: '#text',
+                                props: {},
+                                children: ['NodeJS'],
+                              },
+                              {
+                                type: '#text',
+                                props: {},
+                                children: [','],
+                              },
+                            ],
+                          },
+                          {
+                            type: 'li',
+                            props: {
+                              class: 'inline',
+                            },
+                            children: [
+                              {
+                                type: '#text',
+                                props: {},
+                                children: ['Clean Code'],
+                              },
+                              {
+                                type: '#text',
+                                props: {},
+                                children: [','],
+                              },
+                            ],
+                          },
+                          {
+                            type: 'li',
+                            props: {
+                              class: 'inline',
+                            },
+                            children: [
+                              {
+                                type: '#text',
+                                props: {},
+                                children: ['Code Review'],
+                              },
+                              {
+                                type: '#text',
+                                props: {},
+                                children: [','],
+                              },
+                            ],
+                          },
+                          {
+                            type: 'li',
+                            props: {
+                              class: 'inline',
+                            },
+                            children: [
+                              {
+                                type: '#text',
+                                props: {},
+                                children: ['Clean Architecture'],
+                              },
+                              {
+                                type: '#text',
+                                props: {},
+                                children: [','],
+                              },
+                            ],
+                          },
+                          {
+                            type: 'li',
+                            props: {
+                              class: 'inline',
+                            },
+                            children: [
+                              {
+                                type: '#text',
+                                props: {},
+                                children: ['Zustand'],
+                              },
+                              {
+                                type: '#text',
+                                props: {},
+                                children: [','],
+                              },
+                            ],
+                          },
+                          {
+                            type: 'li',
+                            props: {
+                              class: 'inline',
+                            },
+                            children: [
+                              {
+                                type: '#text',
+                                props: {},
+                                children: ['TailwindCSS'],
+                              },
+                              {
+                                type: '#text',
+                                props: {},
+                                children: [','],
+                              },
+                            ],
+                          },
+                          {
+                            type: 'li',
+                            props: {
+                              class: 'inline',
+                            },
+                            children: [
+                              {
+                                type: '#text',
+                                props: {},
+                                children: ['ReactNative/EXPO'],
+                              },
+                            ],
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                  {
+                    type: 'section',
+                    props: {
+                      class: 'flex flex-col',
+                    },
+                    children: [
+                      {
+                        type: 'h1',
+                        props: {
+                          class: 'mb-12 text-24',
+                        },
+                        children: [
+                          {
+                            type: '#text',
+                            props: {},
+                            children: ['Hobbies'],
+                          },
+                        ],
+                      },
+                      {
+                        type: 'ul',
+                        props: {},
+                        children: [
+                          {
+                            type: 'li',
+                            props: {},
+                            children: [
+                              {
+                                type: '#text',
+                                props: {},
+                                children: ['Standup Paddle'],
+                              },
+                            ],
+                          },
+                          {
+                            type: 'li',
+                            props: {},
+                            children: [
+                              {
+                                type: '#text',
+                                props: {},
+                                children: ['Corrida'],
+                              },
+                            ],
+                          },
+                          {
+                            type: 'li',
+                            props: {},
+                            children: [
+                              {
+                                type: '#text',
+                                props: {},
+                                children: ['Natação'],
+                              },
+                            ],
+                          },
+                          {
+                            type: 'li',
+                            props: {},
+                            children: [
+                              {
+                                type: '#text',
+                                props: {},
+                                children: ['Musculação'],
+                              },
+                            ],
+                          },
+                          {
+                            type: 'li',
+                            props: {},
+                            children: [
+                              {
+                                type: '#text',
+                                props: {},
+                                children: ['Leitura'],
+                              },
+                            ],
+                          },
+                          {
+                            type: 'li',
+                            props: {},
+                            children: [
+                              {
+                                type: '#text',
+                                props: {},
+                                children: ['Ouvir Charlie Brown JR'],
+                              },
+                            ],
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                  {
+                    type: 'section',
+                    props: {
+                      class: 'flex flex-col',
+                    },
+                    children: [
+                      {
+                        type: 'h1',
+                        props: {
+                          class: 'mb-12 text-24',
+                        },
+                        children: [
+                          {
+                            type: '#text',
+                            props: {},
+                            children: ['Idioma'],
+                          },
+                        ],
+                      },
+                      {
+                        type: 'ul',
+                        props: {},
+                        children: [
+                          {
+                            type: 'li',
+                            props: {},
+                            children: [
+                              {
+                                type: '#text',
+                                props: {},
+                                children: ['Português (Nativo)'],
+                              },
+                            ],
+                          },
+                          {
+                            type: 'li',
+                            props: {},
+                            children: [
+                              {
+                                type: '#text',
+                                props: {},
+                                children: ['Inglês básico (Leitura, escrita)'],
+                              },
+                            ],
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                  {
+                    type: 'section',
+                    props: {
+                      class: 'flex flex-col',
+                    },
+                    children: [
+                      {
+                        type: 'h1',
+                        props: {
+                          class: 'mb-12 text-24',
+                        },
+                        children: [
+                          {
+                            type: '#text',
+                            props: {},
+                            children: ['Links'],
+                          },
+                        ],
+                      },
+                      {
+                        type: 'ul',
+                        props: {},
+                        children: [
+                          {
+                            type: 'li',
+                            props: {},
+                            children: [
+                              {
+                                type: '#text',
+                                props: {},
+                                children: ['matheusgomes1203@hotmail.com'],
+                              },
+                            ],
+                          },
+                          {
+                            type: 'li',
+                            props: {},
+                            children: [
+                              {
+                                type: '#text',
+                                props: {},
+                                children: ['https://www.linkedin.com/in/matheusgomes'],
+                              },
+                            ],
+                          },
+                          {
+                            type: 'li',
+                            props: {},
+                            children: [
+                              {
+                                type: '#text',
+                                props: {},
+                                children: ['https://github.com/mgomesdev'],
+                              },
+                            ],
+                          },
+                          {
+                            type: 'li',
+                            props: {},
+                            children: [
+                              {
+                                type: '#text',
+                                props: {},
+                                children: ['https://github.com/matheusgrodrigues (antigo)'],
                               },
                             ],
                           },

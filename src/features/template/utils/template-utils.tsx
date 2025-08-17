@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { use } from 'react';
 import type { PageNode } from '../dto/template-dto';
+import { TemplateEditorContextProvider } from '../editor/editor';
 
 export const renderFromJSON = (node: PageNode): React.ReactNode => {
   if (node.type === '#text') return node.children?.join('') ?? '';
@@ -15,7 +16,29 @@ export const renderFromJSON = (node: PageNode): React.ReactNode => {
     node.type,
     props,
     (node.children as PageNode[])?.map((child: PageNode, i: number) => {
-      return <React.Fragment key={i}>{renderFromJSON(child)}</React.Fragment>;
+      const { isEdit } = use(TemplateEditorContextProvider);
+      const element = renderFromJSON(child) as React.ReactElement;
+      return <React.Fragment key={i}>{isEdit ? editableElement() : element}</React.Fragment>;
+
+      function editableElement() {
+        const editableProps = {
+          ...(element.props as React.HTMLAttributes<HTMLElement>),
+          contentEditable: true,
+          suppressContentEditableWarning: true,
+          className: `${child.props.class} border-green-500 border-2 hover:border-blue-500 hover:border-2 transition-all duration-200 ease-in-out`,
+        };
+
+        const elementWithEdit =
+          (isEdit && child.type === 'p') ||
+          (isEdit && child.type === 'h1') ||
+          (isEdit && child.type === 'span') ||
+          (isEdit && child.type === 'li') ||
+          (isEdit && child.type === 'strong')
+            ? React.cloneElement(element, editableProps)
+            : element;
+
+        return elementWithEdit;
+      }
     })
   );
 };
