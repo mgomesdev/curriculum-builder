@@ -18,18 +18,23 @@ export const renderFromJSON = (node: PageNode): React.ReactNode => {
     (node.children as PageNode[])?.map((child: PageNode, i: number) => {
       const { isEdit } = use(TemplateEditorContextProvider);
       const element = renderFromJSON(child) as React.ReactElement;
-      return <React.Fragment key={i}>{isEdit ? editableElement() : element}</React.Fragment>;
+      return <React.Fragment key={i}>{renderElement()}</React.Fragment>;
 
-      function editableElement() {
+      function renderElement() {
         const editableProps = {
           ...(element.props as React.HTMLAttributes<HTMLElement>),
           contentEditable: true,
           suppressContentEditableWarning: true,
           className: `${child.props.class} border-green-500 border-2 hover:border-blue-500 hover:border-2 transition-all duration-200 ease-in-out`,
         };
+
         const elementType: PageNode['type'][] = ['strong', 'span', 'li', 'h1', 'p'];
-        const elementWithEdit = elementType.includes(child.type) && React.cloneElement(element, editableProps);
-        return elementWithEdit;
+
+        if (isEdit && elementType.includes(child.type)) {
+          return React.cloneElement(element, editableProps);
+        } else {
+          return element;
+        }
       }
     })
   );
