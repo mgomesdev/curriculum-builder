@@ -27,12 +27,8 @@ export const renderFromJSON = (node: PageNode): React.ReactNode => {
           suppressContentEditableWarning: true,
           className: `${child.props.class} border-green-500 border-2 hover:border-blue-500 hover:border-2 transition-all duration-200 ease-in-out`,
         };
-
         const elementType: PageNode['type'][] = ['strong', 'span', 'li', 'h1', 'p'];
-
-        const elementWithEdit =
-          isEdit && elementType.includes(child.type) ? React.cloneElement(element, editableProps) : element;
-
+        const elementWithEdit = elementType.includes(child.type) && React.cloneElement(element, editableProps);
         return elementWithEdit;
       }
     })
