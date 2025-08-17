@@ -23,6 +23,11 @@ const TemplateEditorContent = () => {
     }
   };
 
+  const handleEdit = () => {
+    setIsEdit();
+    if (isEdit) handleSave();
+  };
+
   const handleDownloadPDF = () => console.log('TODO: download PDF');
 
   return (
@@ -30,13 +35,11 @@ const TemplateEditorContent = () => {
       <header className="container mx-auto flex h-80 w-full items-end justify-center gap-12 sm:h-140 sm:justify-end">
         {/* TODO: instalar tailwind merge para classes */}
         <button
-          onClick={setIsEdit}
+          onClick={handleEdit}
           className={`h-48 cursor-pointer rounded-2xl ${isEdit ? 'bg-amber-200' : 'bg-blue-400'} px-20`}>
           {isEdit ? 'Finalizar' : 'Editar'}
         </button>
-        <button className="h-48 cursor-pointer rounded-2xl bg-green-300 px-20" onClick={handleSave}>
-          Salvar
-        </button>
+
         <button onClick={handleDownloadPDF} className="h-48 cursor-pointer rounded-2xl bg-fuchsia-300 px-20">
           Download
         </button>
