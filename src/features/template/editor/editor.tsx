@@ -12,10 +12,33 @@ export const TemplateEditor = () => {
   );
 };
 
+interface TemplateEditorContextProviderProps {
+  isEdit: boolean;
+  setIsEdit: () => void;
+}
+
+export const TemplateEditorContextProvider = createContext({} as TemplateEditorContextProviderProps);
+
+interface TemplateEditorContextProps {
+  children: React.ReactNode;
+}
+
+const TemplateEditorContext = ({ children }: TemplateEditorContextProps) => {
+  const [isEdit, setIsEdit] = useState(false);
+  const handleEdit = () => setIsEdit(old => !old);
+
+  return (
+    <TemplateEditorContextProvider.Provider value={{ isEdit, setIsEdit: handleEdit }}>
+      {children}
+    </TemplateEditorContextProvider.Provider>
+  );
+};
+
 const TemplateEditorContent = () => {
   const { setIsEdit, isEdit } = use(TemplateEditorContextProvider);
   const templateRef = useRef<HTMLDivElement>(null);
 
+  // TODO: pegar o elemento correto para gerar o JSON.
   const handleSave = () => {
     if (templateRef?.current) {
       const json = domToJSON(templateRef.current);
@@ -47,34 +70,113 @@ const TemplateEditorContent = () => {
         )}
       </header>
 
-      <div ref={templateRef}>
-        {fakeTemplateApiResponse.page.children.map((child, index) => (
-          <React.Fragment key={index}>{renderFromJSON(child)}</React.Fragment>
-        ))}
-      </div>
+      {fakeTemplateApiResponse.page.children.map((child, index) => (
+        <React.Fragment key={index}>{renderFromJSON(child)}</React.Fragment>
+      ))}
     </>
   );
 };
 
-interface TemplateEditorContextProviderProps {
-  isEdit: boolean;
-  setIsEdit: () => void;
+/*
+interface ItemProps {
+  node: PageNode;
+  path: number[]; // caminho para identificar a posição na árvore
 }
 
-export const TemplateEditorContextProvider = createContext({} as TemplateEditorContextProviderProps);
+const SortableItem = ({ node, path }: ItemProps) => {
+  const id = path.join('-'); // cria um identificador único a partir do caminho
+  const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id });
 
-interface TemplateEditorContextProps {
-  children: React.ReactNode;
-}
-
-const TemplateEditorContext = ({ children }: TemplateEditorContextProps) => {
-  const [isEdit, setIsEdit] = useState(false);
-
-  const handleEdit = () => setIsEdit(old => !old);
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+    border: '1px dashed #aaa',
+    padding: 8,
+    marginBottom: 4,
+  };
 
   return (
-    <TemplateEditorContextProvider.Provider value={{ isEdit, setIsEdit: handleEdit }}>
-      {children}
-    </TemplateEditorContextProvider.Provider>
+    <div ref={setNodeRef} style={style} {...attributes} {...listeners}>
+      <span>{node.type}</span>
+      {node.children && (
+        <div style={{ paddingLeft: 16 }}>
+          <SortableContext
+            items={node.children.map((_, i) => [...path, i].join('-'))}
+            strategy={verticalListSortingStrategy}>
+            {node.children.map((child, i) =>
+              typeof child === 'string' ? (
+                <div key={i}>{child}</div>
+              ) : (
+                <SortableItem key={i} node={child} path={[...path, i]} />
+              )
+            )}
+          </SortableContext>
+        </div>
+      )}
+    </div>
   );
 };
+
+const SortableElements = () => {
+  const headers = fakeTemplateApiResponse.page.children[0].children.filter(n => n.type === 'header');
+  const [items, setItems] = useState(headers);
+
+  const sensors = useSensors(useSensor(PointerSensor));
+
+  const handleDragEnd = (event: DragEndEvent) => {
+    const { active, over } = event;
+    if (!over || active.id === over.id) return;
+    const oldIndex = items.findIndex(i => i.type + i.props.id === active.id);
+    const newIndex = items.findIndex(i => i.type + i.props.id === over.id);
+    setItems(arrayMove(items, oldIndex, newIndex));
+  };
+
+  return (
+    <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+      <SortableContext items={items.map(i => i.type + i.props.id)} strategy={verticalListSortingStrategy}>
+        {items.map((item, index) => (
+          <SortableItem key={index} node={item} path={[index]} />
+        ))}
+      </SortableContext>
+    </DndContext>
+  );
+};
+/*
+interface SortableItemProps {
+  children: React.ReactNode;
+  id: string;
+}
+
+const SortableItem = ({ children, id }: SortableItemProps) => {
+  const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id });
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+  };
+
+  console.log(id);
+  return (
+    <Item ref={setNodeRef} style={style} {...attributes} {...listeners}>
+      {children}
+    </Item>
+  );
+};
+
+interface ItemProps extends ComponentProps<'div'> {
+  children?: React.ReactNode;
+}
+
+const Item = forwardRef<HTMLDivElement, ItemProps>(({ children, ...props }, ref) => {
+  return (
+    <div
+      {...props}
+      ref={ref}
+      className="cursor-move rounded-md border border-dashed border-gray-300 p-4 hover:border-blue-400">
+      {children}
+    </div>
+  );
+});
+
+Item.displayName = 'Item';
+*/

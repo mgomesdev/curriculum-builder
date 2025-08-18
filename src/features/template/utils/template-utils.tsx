@@ -12,6 +12,13 @@ export const renderFromJSON = (node: PageNode): React.ReactNode => {
     delete props.class;
   }
 
+  /* TODO: [dnd-kit (ordenação)]
+   * quando estiver no modo edição, a instancia do dnd-kit será feita nos elementos especificos (inicialmente apenas section)
+   * obs. caso o usuario clique diretamente em um elemento 'contenteditable' ele deverá conseguir editar sem acionar a ordenação.
+   * deve ter algum icone destacando onde o usuario deverá clicar para arrastar o elemento.
+   * após ordenado, ao clicar em salvar o json final deverá estar na ordem correta.    *
+   */
+
   return React.createElement(
     node.type,
     props,
@@ -29,12 +36,8 @@ export const renderFromJSON = (node: PageNode): React.ReactNode => {
         };
 
         const elementType: PageNode['type'][] = ['strong', 'span', 'li', 'h1', 'p'];
-
-        if (isEdit && elementType.includes(child.type)) {
-          return React.cloneElement(element, editableProps);
-        } else {
-          return element;
-        }
+        if (isEdit && elementType.includes(child.type)) return React.cloneElement(element, editableProps);
+        return element;
       }
     })
   );
