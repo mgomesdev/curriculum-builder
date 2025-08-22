@@ -1,6 +1,6 @@
 import React, { createContext, use, useRef, useState } from 'react';
 import { fakeTemplateApiResponse } from '../builder/template-builder-data';
-import { domToJSON, renderFromJSON } from '../utils/template-utils';
+import { domToJSON, renderFromJSON } from '@/utils/template-utils';
 
 export const TemplateEditor = () => {
   return (
@@ -52,6 +52,8 @@ const TemplateEditorContent = () => {
   };
 
   const handleDownloadPDF = () => console.log('TODO: download PDF');
+
+  console.log(Array.prototype.flat.call(fakeTemplateApiResponse.page.children));
 
   return (
     <>

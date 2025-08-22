@@ -1,4 +1,4 @@
-import type { Template } from '../dto/template-dto';
+import type { Template } from '../../../dto/template-dto';
 
 interface Contact {
   address: string;
