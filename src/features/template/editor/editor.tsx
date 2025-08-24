@@ -1,4 +1,4 @@
-import React, { createContext, forwardRef, use, useRef, useState, type ComponentProps } from 'react';
+import React, { createContext, use, useRef, useState } from 'react';
 import { fakeTemplateApiResponse } from '../builder/template-builder-data';
 import { domToJSON } from '@/utils/template-utils';
 import { closestCenter, DndContext, PointerSensor, useSensor, useSensors, type DragEndEvent } from '@dnd-kit/core';
@@ -124,23 +124,13 @@ const SortableItem = ({ children, id }: SortableItemProps) => {
   };
 
   return (
-    <Item ref={setNodeRef} style={style} {...attributes} {...listeners}>
+    <div
+      ref={setNodeRef}
+      style={style}
+      {...attributes}
+      {...listeners}
+      className="cursor-move rounded-md border border-dashed border-gray-300 p-4 hover:border-blue-400">
       {children}
-    </Item>
+    </div>
   );
 };
-
-interface ItemProps extends ComponentProps<'div'> {
-  children?: React.ReactNode;
-}
-
-const Item = forwardRef<HTMLDivElement, ItemProps>(({ children, ...props }, ref) => (
-  <div
-    {...props}
-    ref={ref}
-    className="cursor-move rounded-md border border-dashed border-gray-300 p-4 hover:border-blue-400">
-    {children}
-  </div>
-));
-
-Item.displayName = 'Item';
