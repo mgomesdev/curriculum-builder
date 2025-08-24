@@ -79,13 +79,17 @@ const TemplateEditorContent = () => {
         <React.Fragment key={index}>{renderFromJSON(child)}</React.Fragment>
       ))*/}
 
-      <SortableElements />
+      <SortableElements elements={['1', '2']} />
     </>
   );
 };
 
-const SortableElements = () => {
-  const [items, setItems] = useState(['1', '2']);
+interface SortableElementsProps {
+  elements: string[];
+}
+
+const SortableElements = ({ elements }: SortableElementsProps) => {
+  const [items, setItems] = useState(elements);
 
   const sensors = useSensors(useSensor(PointerSensor));
 
@@ -101,9 +105,7 @@ const SortableElements = () => {
     <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
       <SortableContext items={items} strategy={verticalListSortingStrategy}>
         {items.map(item => (
-          <SortableItem id={item} key={item}>
-            {item}
-          </SortableItem>
+          <SortableItem render={item} key={item} id={item} />
         ))}
       </SortableContext>
     </DndContext>
@@ -111,11 +113,11 @@ const SortableElements = () => {
 };
 
 interface SortableItemProps {
-  children: React.ReactNode;
+  render: React.ReactNode;
   id: string;
 }
 
-const SortableItem = ({ children, id }: SortableItemProps) => {
+const SortableItem = ({ render, id }: SortableItemProps) => {
   const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id });
 
   const style = {
@@ -130,7 +132,7 @@ const SortableItem = ({ children, id }: SortableItemProps) => {
       {...attributes}
       {...listeners}
       className="cursor-move rounded-md border border-dashed border-gray-300 p-4 hover:border-blue-400">
-      {children}
+      {render}
     </div>
   );
 };
