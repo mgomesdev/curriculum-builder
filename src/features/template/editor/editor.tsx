@@ -1,9 +1,10 @@
 import React, { createContext, use, useRef, useState } from 'react';
 import { fakeTemplateApiResponse } from '../builder/template-builder-data';
-import { domToJSON } from '@/utils/template-utils';
+import { domToJSON, renderFromJSON } from '@/utils/template-utils';
 import { closestCenter, DndContext, PointerSensor, useSensor, useSensors, type DragEndEvent } from '@dnd-kit/core';
 import { arrayMove, SortableContext, useSortable, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
+import type { PageNode } from '@/dto/template-dto';
 
 export const TemplateEditor = () => {
   return (
@@ -79,16 +80,17 @@ const TemplateEditorContent = () => {
         <React.Fragment key={index}>{renderFromJSON(child)}</React.Fragment>
       ))*/}
 
-      <SortableElements elements={['1', '2']} />
+      <SortableElements elements={fakeTemplateApiResponse.page.children} />
     </>
   );
 };
 
 interface SortableElementsProps {
-  elements: string[];
+  elements: PageNode[];
 }
 
 const SortableElements = ({ elements }: SortableElementsProps) => {
+  console.log(elements);
   const [items, setItems] = useState(elements);
 
   const sensors = useSensors(useSensor(PointerSensor));
@@ -96,17 +98,25 @@ const SortableElements = ({ elements }: SortableElementsProps) => {
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
     if (!over || active.id === over.id) return;
-    const oldIndex = items.findIndex(i => i === active.id);
-    const newIndex = items.findIndex(i => i === over.id);
+    const oldIndex = items.findIndex(i => i.type + i.props.id === active.id);
+    const newIndex = items.findIndex(i => i.type + i.props.id === over.id);
     setItems(arrayMove(items, oldIndex, newIndex));
   };
 
+  // TODO: encontrar uma forma de filtrar os header, section etc... e arrastar somente eles.
+
   return (
     <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
-      <SortableContext items={items} strategy={verticalListSortingStrategy}>
-        {items.map(item => (
-          <SortableItem render={item} key={item} id={item} />
-        ))}
+      <SortableContext
+        items={elements
+          .filter(child => child.type === 'header' || child.type === 'section')
+          .map((child, index) => child.props.id || index)}
+        strategy={verticalListSortingStrategy}>
+        {elements
+          .filter(child => child.type === 'header' || child.type === 'section')
+          .map((child, index) => (
+            <SortableItem key={child.props.id || index} id={child.props.id || index} render={renderFromJSON(child)} />
+          ))}
       </SortableContext>
     </DndContext>
   );
@@ -114,7 +124,7 @@ const SortableElements = ({ elements }: SortableElementsProps) => {
 
 interface SortableItemProps {
   render: React.ReactNode;
-  id: string;
+  id: number;
 }
 
 const SortableItem = ({ render, id }: SortableItemProps) => {
