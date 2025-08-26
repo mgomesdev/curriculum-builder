@@ -1,61 +1,32 @@
-import React, { createContext, use, useRef, useState } from 'react';
 import { fakeTemplateApiResponse } from '../builder/template-builder-data';
-import { domToJSON, renderFromJSON } from '@/utils/template-utils';
-import { closestCenter, DndContext, PointerSensor, useSensor, useSensors, type DragEndEvent } from '@dnd-kit/core';
-import { arrayMove, SortableContext, useSortable, verticalListSortingStrategy } from '@dnd-kit/sortable';
-import { CSS } from '@dnd-kit/utilities';
-import type { PageNode } from '@/dto/template-dto';
+
+import { Editor, Frame, Element } from '@craftjs/core';
 
 export const TemplateEditor = () => {
   return (
     <div className="flex flex-col">
-      <TemplateEditorContext>
+      <Editor>
         <TemplateEditorContent />
-      </TemplateEditorContext>
+      </Editor>
     </div>
   );
 };
 
-interface TemplateEditorContextProviderProps {
-  isEdit: boolean;
-  setIsEdit: () => void;
-}
-
-export const TemplateEditorContextProvider = createContext({} as TemplateEditorContextProviderProps);
-
-interface TemplateEditorContextProps {
-  children: React.ReactNode;
-}
-
-const TemplateEditorContext = ({ children }: TemplateEditorContextProps) => {
-  const [isEdit, setIsEdit] = useState(false);
-  const handleEdit = () => setIsEdit(old => !old);
-
-  return (
-    <TemplateEditorContextProvider.Provider value={{ isEdit, setIsEdit: handleEdit }}>
-      {children}
-    </TemplateEditorContextProvider.Provider>
-  );
-};
-
 const TemplateEditorContent = () => {
-  const { setIsEdit, isEdit } = use(TemplateEditorContextProvider);
-  const templateRef = useRef<HTMLDivElement>(null);
-
   // TODO: pegar o elemento correto para gerar o JSON.
-  const handleSave = () => {
+  /*  const handleSave = () => {
     if (templateRef?.current) {
       const json = domToJSON(templateRef.current);
       console.log(json.children);
     }
-  };
+  }; */
 
   const handleEdit = () => {
-    setIsEdit();
-    if (isEdit) handleSave();
+    // setIsEdit();
+    // if (isEdit) handleSave();
   };
 
-  const handleDownloadPDF = () => console.log('TODO: download PDF');
+  //  const handleDownloadPDF = () => console.log('TODO: download PDF');
 
   console.log(Array.prototype.flat.call(fakeTemplateApiResponse.page.children));
 
@@ -65,84 +36,32 @@ const TemplateEditorContent = () => {
         {/* TODO: instalar tailwind merge para classes */}
         <button
           onClick={handleEdit}
-          className={`h-48 cursor-pointer rounded-2xl ${isEdit ? 'bg-green-200' : 'bg-blue-400'} px-20`}>
-          {isEdit ? 'Salvar' : 'Editar'}
+          className={`h-48 cursor-pointer rounded-2xl ${/*isEdit ? 'bg-green-200' :*/ 'bg-blue-400'} px-20`}>
+          {/*isEdit ? 'Salvar' : 'Editar'*/} SALVAR/EDITAR
         </button>
 
-        {!isEdit && (
+        {/*!isEdit && (
           <button onClick={handleDownloadPDF} className="h-48 cursor-pointer rounded-2xl bg-fuchsia-300 px-20">
             Download
           </button>
-        )}
+        )*/}
       </header>
 
-      {/*fakeTemplateApiResponse.page.children.map((child, index) => (
-        <React.Fragment key={index}>{renderFromJSON(child)}</React.Fragment>
-      ))*/}
-
-      <SortableElements elements={fakeTemplateApiResponse.page.children} />
+      <Frame>
+        <Element></Element>
+      </Frame>
     </>
   );
 };
 
-interface SortableElementsProps {
-  elements: PageNode[];
-}
-
-const SortableElements = ({ elements }: SortableElementsProps) => {
-  console.log(elements);
-  const [items, setItems] = useState(elements);
-
-  const sensors = useSensors(useSensor(PointerSensor));
-
-  const handleDragEnd = (event: DragEndEvent) => {
-    const { active, over } = event;
-    if (!over || active.id === over.id) return;
-    const oldIndex = items.findIndex(i => i.type + i.props.id === active.id);
-    const newIndex = items.findIndex(i => i.type + i.props.id === over.id);
-    setItems(arrayMove(items, oldIndex, newIndex));
-  };
-
-  // TODO: encontrar uma forma de filtrar os header, section etc... e arrastar somente eles.
-
-  return (
-    <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
-      <SortableContext
-        items={elements
-          .filter(child => child.type === 'header' || child.type === 'section')
-          .map((child, index) => child.props.id || index)}
-        strategy={verticalListSortingStrategy}>
-        {elements
-          .filter(child => child.type === 'header' || child.type === 'section')
-          .map((child, index) => (
-            <SortableItem key={child.props.id || index} id={child.props.id || index} render={renderFromJSON(child)} />
-          ))}
-      </SortableContext>
-    </DndContext>
-  );
-};
-
-interface SortableItemProps {
-  render: React.ReactNode;
-  id: number;
-}
-
-const SortableItem = ({ render, id }: SortableItemProps) => {
-  const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id });
-
-  const style = {
-    transform: CSS.Transform.toString(transform),
-    transition,
-  };
-
-  return (
-    <div
-      ref={setNodeRef}
-      style={style}
-      {...attributes}
-      {...listeners}
-      className="cursor-move rounded-md border border-dashed border-gray-300 p-4 hover:border-blue-400">
-      {render}
-    </div>
-  );
-};
+/* XXX: funcionamento
+ * componentes abstratos (craftjs)
+ * <CraftWapper><Button/></CraftWapper>
+ * monta o template e salva o JSON (serialize)
+ * o json é salvo no banco, e o template busca na api e carrega como foi salvo.
+ * -------
+ * É uma aplicação de curriculo, portanto os eventListeners e helpers são abstratos e reaproveitados.
+ * cada modelo precisará inicialmente ser montado manualmente para que o usuario possa escolhar e customizar.
+ * esse processo manual poderá ser automatizado através de uma interface 'admin' drag and drop para montar novos templates.
+ * os componentes 'arrastaveis' sáo os abstratos
+ */
