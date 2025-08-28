@@ -1,62 +1,145 @@
-import React, { use } from 'react';
-import type { PageNode } from '@/dto/template-dto';
-import { TemplateEditorContextProvider } from '@/features/template/editor/editor';
+import { useNode, useEditor } from '@craftjs/core';
+import { ROOT_NODE } from '@craftjs/utils';
+import { useCallback, useEffect, useRef, type AnchorHTMLAttributes, type HTMLAttributes } from 'react';
+import ReactDOM from 'react-dom';
 
-export const renderFromJSON = (node: PageNode): React.ReactNode => {
-  if (node.type === '#text') return node.children?.join('') ?? '';
+interface RenderNodeProps {
+  render: React.ReactNode;
+}
 
-  const props = { ...node.props };
+export const RenderNode = ({ render }: RenderNodeProps) => {
+  const { id } = useNode();
+  const { isActive, actions, query } = useEditor((_, query) => ({
+    isActive: query.getEvent('selected').contains(id),
+  }));
 
-  if ('class' in props) {
-    props.className = props.class;
-    delete props.class;
-  }
+  const {
+    connectors: { drag },
+    deletable,
+    moveable,
+    isHover,
+    parent,
+    name,
+    dom,
+  } = useNode(node => ({
+    deletable: query.node(node.id).isDeletable(),
+    moveable: query.node(node.id).isDraggable(),
+    isHover: node.events.hovered,
+    parent: node.data.parent,
+    props: node.data.props,
+    name: node.data.custom.displayName || node.data.displayName,
+    dom: node.dom,
+  }));
 
-  /* TODO: [dnd-kit (ordenação)]
-   * quando estiver no modo edição, a instancia do dnd-kit será feita nos elementos especificos (inicialmente apenas section)
-   * obs. caso o usuario clique diretamente em um elemento 'contenteditable' ele deverá conseguir editar sem acionar a ordenação.
-   * deve ter algum icone destacando onde o usuario deverá clicar para arrastar o elemento.
-   * após ordenado, ao clicar em salvar o json final deverá estar na ordem correta.    *
-   */
+  const currentRef = useRef<HTMLDivElement | null>(null);
 
-  return React.createElement(
-    node.type,
-    props,
-    (node.children as PageNode[])?.map((child: PageNode, i: number) => {
-      const { isEdit } = use(TemplateEditorContextProvider);
-      const element = renderFromJSON(child) as React.ReactElement;
-      return <React.Fragment key={i}>{renderElement()}</React.Fragment>;
-
-      function renderElement() {
-        const editableProps = {
-          ...(element.props as React.HTMLAttributes<HTMLElement>),
-          contentEditable: true,
-          suppressContentEditableWarning: true,
-          className: `${child.props.class} border-green-500 border-2 hover:border-blue-500 hover:border-2 transition-all duration-200 ease-in-out`,
-        };
-
-        const elementType: PageNode['type'][] = ['strong', 'span', 'li', 'h1', 'p'];
-        if (isEdit && elementType.includes(child.type)) return React.cloneElement(element, editableProps);
-        return element;
+  useEffect(() => {
+    if (dom) {
+      if (isActive || isHover) {
+        dom.classList.add(
+          'border-blue-700',
+          'outline-dashed',
+          'transition-all',
+          'duration-200',
+          'ease-in-out',
+          'border'
+        );
+      } else {
+        dom.classList.remove('border-blue-700', 'outline-dashed', 'border');
       }
-    })
+    }
+  }, [isActive, isHover, dom]);
+
+  const getPos = useCallback((dom: HTMLElement | null) => {
+    const { bottom, left, top } = dom ? dom.getBoundingClientRect() : { top: 0, left: 0, bottom: 0 };
+    return {
+      left: `${left}px`,
+      top: `${top > 0 ? top : bottom}px`,
+    };
+  }, []);
+
+  const scroll = useCallback(() => {
+    const { current } = currentRef;
+    if (!current) return;
+    const { top, left } = getPos(dom);
+    current.style.top = top;
+    current.style.left = left;
+  }, [getPos, dom]);
+
+  useEffect(() => {
+    document?.querySelector('.craftjs-renderer')?.addEventListener('scroll', scroll);
+    return () => document?.querySelector('.craftjs-renderer')?.removeEventListener('scroll', scroll);
+  }, [scroll]);
+
+  return (
+    <>
+      {isHover ||
+        (isActive &&
+          ReactDOM.createPortal(
+            <IndicatorDiv
+              className="bg-primary fixed flex items-center px-2 py-2 text-white"
+              style={{
+                zIndex: 9999,
+                left: getPos(dom).left,
+                top: getPos(dom).top,
+              }}
+              ref={currentRef}>
+              <h2 className="mr-4 flex-1 text-orange-400">{name}</h2>
+
+              {moveable && (
+                <Button
+                  className="mr-2 cursor-move"
+                  ref={dom => {
+                    drag(dom as HTMLElement);
+                  }}>
+                  <span className="size-[15px] bg-blue-500">MoveIcon</span>
+                </Button>
+              )}
+
+              {id !== ROOT_NODE && (
+                <Button className="mr-2 cursor-pointer" onClick={() => actions.selectNode(parent as string)}>
+                  <span className="size-[15px] bg-amber-500">ArrowUpIcon</span>
+                </Button>
+              )}
+
+              {deletable && (
+                <Button
+                  className="cursor-pointer"
+                  onMouseDown={(e: React.MouseEvent) => {
+                    e.stopPropagation();
+                    actions.delete(id);
+                  }}>
+                  <span className="size-[15px] bg-amber-500">DeleteIcon</span>
+                </Button>
+              )}
+            </IndicatorDiv>,
+            document.querySelector('.page-container') as Element | DocumentFragment
+          ))}
+      {render}
+    </>
   );
 };
 
-export const domToJSON = (el: Element) => {
-  const children: PageNode[] = [];
+interface ButtonProps extends React.DetailedHTMLProps<AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement> {
+  children: React.ReactNode;
+}
 
-  el.childNodes.forEach(child => {
-    if (child.nodeType === Node.TEXT_NODE) {
-      if (child.textContent?.trim()) {
-        children.push({ type: '#text', props: {}, children: [child.textContent.trim() as unknown as PageNode] });
-      }
-    } else if (child.nodeType === Node.ELEMENT_NODE) children.push(domToJSON(child as Element));
-  });
+const Button = ({ children, ...props }: ButtonProps) => {
+  return (
+    <a {...props} className={`flex items-center opacity-90 ${props.className}`}>
+      <div className="relative -top-[50%] -left-[50%]">{children}</div>
+    </a>
+  );
+};
 
-  return {
-    type: el.tagName.toLowerCase() as PageNode['type'],
-    props: Array.from(el.attributes).reduce((acc, attr) => ({ ...acc, [attr.name]: attr.value }), {}),
-    children: children.length ? children : undefined,
-  };
+interface IndicatorDivProps extends React.DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+  children: React.ReactNode;
+}
+
+const IndicatorDiv = ({ children, ...props }: IndicatorDivProps) => {
+  return (
+    <div {...props} className={`-mt-[29px] h-[30px] text-12 leading-12 ${props.className}`}>
+      {children}
+    </div>
+  );
 };
