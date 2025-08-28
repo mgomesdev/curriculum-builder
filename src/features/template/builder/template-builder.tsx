@@ -434,13 +434,21 @@ interface SectionExperienceProps {
 const SectionExperience = ({ experiences }: SectionExperienceProps) => {
   const {
     connectors: { connect, drag },
-  } = useNode();
+    selected,
+  } = useNode(node => ({
+    selected: node.events.selected,
+  }));
 
   return (
     <section
       className="mt-12 flex flex-col gap-12"
       ref={(ref: HTMLElement) => {
         connect(drag(ref));
+      }}
+      style={{
+        border: selected ? '2px solid blue' : '1px solid transparent',
+        padding: '20px',
+        margin: '10px 0',
       }}>
       <Heading className="text-24">Experiência Profissional</Heading>
       {experiences.map(exp => (
