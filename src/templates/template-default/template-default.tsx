@@ -1,8 +1,8 @@
 import React from 'react';
-import type { TemplateDefaultData } from '../template-default/template-default-data';
+import type { TemplateDefaultData } from './template-default-data';
 import { Editor, Frame, useNode, Element } from '@craftjs/core';
-import { RenderNode } from '@/features/editor/utils/template-utils';
-import { TouchWrapper } from '@/features/editor/utils/touch-wrapper';
+import { RenderNode } from '@/templates/components/render-node';
+import { TouchWrapper } from '@/templates/components/touch-wrapper';
 import { Section } from '../components/section';
 
 /* TODO: US - clicar e arrastar itens
