@@ -1,8 +1,9 @@
 import React from 'react';
-import type { TemplateBuilderData } from './template-builder-data';
+import type { TemplateDefaultData } from '../template-default/template-default-data';
 import { Editor, Frame, useNode, Element } from '@craftjs/core';
-import { RenderNode } from '@/utils/template-utils';
-import { TouchWrapper } from '@/utils/touch-wrapper';
+import { RenderNode } from '@/features/editor/utils/template-utils';
+import { TouchWrapper } from '@/features/editor/utils/touch-wrapper';
+import { Section } from '../components/section';
 
 /* TODO: US - clicar e arrastar itens
  * estilizar o container do item após selecionar.
@@ -11,15 +12,16 @@ import { TouchWrapper } from '@/utils/touch-wrapper';
  * configurar opção de salvar/editar (editor -> enabled(false/true))
  * ajustar estilos da borda de foco.
  * quando clicar fora desselecionar.
+ * criar abstrações para os componentes.
  * adicionar informações reais no initialData do curriculo.
  * revisar, finalizar e fazer PR.
  */
 
-interface TemplateBuilderProps {
-  initialData: TemplateBuilderData;
+interface TemplateDefaultProps {
+  initialData: TemplateDefaultData;
 }
 
-export const TemplateBuilder = ({ initialData }: TemplateBuilderProps) => {
+export const TemplateDefault = ({ initialData }: TemplateDefaultProps) => {
   const { experiences, education, courses, profile, skills, hoobies, languages, links, tools } = initialData;
   const { contact } = profile;
 
@@ -75,95 +77,63 @@ export const TemplateBuilder = ({ initialData }: TemplateBuilderProps) => {
 };
 
 interface SectionLinksProps {
-  links: TemplateBuilderData['links'];
+  links: TemplateDefaultData['links'];
 }
 
 const SectionLinks = ({ links }: SectionLinksProps) => {
-  const {
-    connectors: { connect, drag },
-  } = useNode();
-
   return (
-    <section
-      className="flex flex-col"
-      ref={(ref: HTMLElement) => {
-        connect(drag(ref));
-      }}>
+    <Section className="flex flex-col">
       <Heading className="mb-12 text-24">Links</Heading>
       <ul>
         {links.map(link => (
           <li key={link}>{link}</li>
         ))}
       </ul>
-    </section>
+    </Section>
   );
 };
 
 interface SectionLanguagesProps {
-  languages: TemplateBuilderData['languages'];
+  languages: TemplateDefaultData['languages'];
 }
 
 const SectionLanguages = ({ languages }: SectionLanguagesProps) => {
-  const {
-    connectors: { connect, drag },
-  } = useNode();
-
   return (
-    <section
-      className="flex flex-col"
-      ref={(ref: HTMLElement) => {
-        connect(drag(ref));
-      }}>
+    <Section className="flex flex-col">
       <Heading className="mb-12 text-24">Idioma</Heading>
       <ul>
         {languages.map(language => (
           <li key={language}>{language}</li>
         ))}
       </ul>
-    </section>
+    </Section>
   );
 };
 
 interface SectionHoobiesProps {
-  hoobies: TemplateBuilderData['hoobies'];
+  hoobies: TemplateDefaultData['hoobies'];
 }
 
 const SectionHoobies = ({ hoobies }: SectionHoobiesProps) => {
-  const {
-    connectors: { connect, drag },
-  } = useNode();
-
   return (
-    <section
-      className="flex flex-col"
-      ref={(ref: HTMLElement) => {
-        connect(drag(ref));
-      }}>
+    <Section className="flex flex-col">
       <Heading className="mb-12 text-24">Hobbies</Heading>
       <ul>
         {hoobies.map(hoobie => (
           <li key={hoobie}>{hoobie}</li>
         ))}
       </ul>
-    </section>
+    </Section>
   );
 };
 
 interface SectionToolsProps {
-  tools: TemplateBuilderData['tools'];
+  tools: TemplateDefaultData['tools'];
 }
 
 const SectionTools = ({ tools }: SectionToolsProps) => {
-  const {
-    connectors: { connect, drag },
-  } = useNode();
-
   return (
-    <section
-      className="flex flex-col"
-      ref={(ref: HTMLElement) => {
-        connect(drag(ref));
-      }}>
+    <Section className="flex flex-col">
       <Heading className="mb-12 text-24">Ferramentas e Tecnologias</Heading>
       <ul>
         {tools.map((tool, key) => (
@@ -173,50 +143,34 @@ const SectionTools = ({ tools }: SectionToolsProps) => {
           </li>
         ))}
       </ul>
-    </section>
+    </Section>
   );
 };
 
 interface SectionSkillsProps {
-  skills: TemplateBuilderData['skills'];
+  skills: TemplateDefaultData['skills'];
 }
 
 const SectionSkills = ({ skills }: SectionSkillsProps) => {
-  const {
-    connectors: { connect, drag },
-  } = useNode();
-
   return (
-    <section
-      className="flex flex-col"
-      ref={(ref: HTMLElement) => {
-        connect(drag(ref));
-      }}>
+    <Section className="flex flex-col">
       <Heading className="mb-12 text-24">Competências</Heading>
       <ul>
         {skills.map(skill => (
           <li key={skill}>{skill}</li>
         ))}
       </ul>
-    </section>
+    </Section>
   );
 };
 
 interface SectionContactProps {
-  contact: TemplateBuilderData['profile']['contact'];
+  contact: TemplateDefaultData['profile']['contact'];
 }
 
 const SectionContact = ({ contact }: SectionContactProps) => {
-  const {
-    connectors: { connect, drag },
-  } = useNode();
-
   return (
-    <section
-      className="flex flex-col"
-      ref={(ref: HTMLElement) => {
-        connect(drag(ref));
-      }}>
+    <Section className="flex flex-col">
       <Heading className="mb-12 text-24">Contato</Heading>
 
       <ul>
@@ -236,25 +190,17 @@ const SectionContact = ({ contact }: SectionContactProps) => {
         <li>Naturalidade: {contact.birthplace}</li>
         <li>Habilitação: {contact.drivingLicense}</li>
       </ul>
-    </section>
+    </Section>
   );
 };
 
 interface SectionEducationProps {
-  education: TemplateBuilderData['education'];
+  education: TemplateDefaultData['education'];
 }
 
 const SectionEducation = ({ education }: SectionEducationProps) => {
-  const {
-    connectors: { connect, drag },
-  } = useNode();
-
   return (
-    <section
-      className="mt-12 flex flex-col gap-12"
-      ref={(ref: HTMLElement) => {
-        connect(drag(ref));
-      }}>
+    <Section className="mt-12 flex flex-col gap-12">
       <Heading className="text-24">Formação</Heading>
       {education.map(educ => (
         <Paragraph key={educ.course}>
@@ -264,25 +210,17 @@ const SectionEducation = ({ education }: SectionEducationProps) => {
           <span className="text-14 italic">{educ.institution}</span>
         </Paragraph>
       ))}
-    </section>
+    </Section>
   );
 };
 
 interface SectionCourseProps {
-  courses: TemplateBuilderData['courses'];
+  courses: TemplateDefaultData['courses'];
 }
 
 const SectionCourse = ({ courses }: SectionCourseProps) => {
-  const {
-    connectors: { connect, drag },
-  } = useNode();
-
   return (
-    <section
-      className="mt-12 flex flex-col gap-12"
-      ref={(ref: HTMLElement) => {
-        connect(drag(ref));
-      }}>
+    <Section className="mt-12 flex flex-col gap-12">
       <Heading className="text-24">Cursos</Heading>
       {courses.map(course => (
         <React.Fragment key={course.title}>
@@ -297,12 +235,12 @@ const SectionCourse = ({ courses }: SectionCourseProps) => {
           </ul>
         </React.Fragment>
       ))}
-    </section>
+    </Section>
   );
 };
 
 interface HeaderProps {
-  profile: TemplateBuilderData['profile'];
+  profile: TemplateDefaultData['profile'];
 }
 
 const Header = ({ profile }: HeaderProps) => {
@@ -366,7 +304,7 @@ const Main = ({ children }: MainProps) => {
 
 interface AsideLeftProps {
   children: React.ReactNode;
-  profile: TemplateBuilderData['profile'];
+  profile: TemplateDefaultData['profile'];
 }
 
 const AsideLeft = ({ children, profile }: AsideLeftProps) => {
@@ -448,7 +386,7 @@ export const Heading = ({ children, ...props }: HeadingProps) => {
 };
 
 interface SectionExperienceProps {
-  experiences: TemplateBuilderData['experiences'];
+  experiences: TemplateDefaultData['experiences'];
 }
 
 const SectionExperience = ({ experiences }: SectionExperienceProps) => {
