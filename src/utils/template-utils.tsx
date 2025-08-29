@@ -73,22 +73,22 @@ export const RenderNode = ({ render }: RenderNodeProps) => {
 
   return (
     <>
-      {isHover ||
-        (isActive &&
-          ReactDOM.createPortal(
-            <IndicatorDiv
-              className="bg-primary fixed flex items-center px-2 py-2 text-white"
-              style={{
-                zIndex: 9999,
-                left: getPos(dom).left,
-                top: getPos(dom).top,
-              }}
-              ref={currentRef}>
-              <h2 className="mr-4 flex-1 text-orange-400">{name}</h2>
+      {isActive &&
+        ReactDOM.createPortal(
+          <IndicatorDiv
+            className="fixed flex items-center gap-16 bg-blue-400 text-white"
+            style={{
+              zIndex: 9999,
+              left: getPos(dom).left,
+              top: getPos(dom).top,
+            }}
+            ref={currentRef}>
+            <h2 className="text-red-400">{name}</h2>
 
+            <div className="flex w-fit justify-between gap-20">
               {moveable && (
                 <Button
-                  className="mr-2 cursor-move"
+                  className="cursor-move"
                   ref={dom => {
                     drag(dom as HTMLElement);
                   }}>
@@ -97,7 +97,7 @@ export const RenderNode = ({ render }: RenderNodeProps) => {
               )}
 
               {id !== ROOT_NODE && (
-                <Button className="mr-2 cursor-pointer" onClick={() => actions.selectNode(parent as string)}>
+                <Button className="cursor-pointer" onClick={() => actions.selectNode(parent as string)}>
                   <span className="size-[15px] bg-amber-500">ArrowUpIcon</span>
                 </Button>
               )}
@@ -112,9 +112,10 @@ export const RenderNode = ({ render }: RenderNodeProps) => {
                   <span className="size-[15px] bg-amber-500">DeleteIcon</span>
                 </Button>
               )}
-            </IndicatorDiv>,
-            document.querySelector('.page-container') as Element | DocumentFragment
-          ))}
+            </div>
+          </IndicatorDiv>,
+          document.querySelector('.page-container') as Element | DocumentFragment
+        )}
       {render}
     </>
   );

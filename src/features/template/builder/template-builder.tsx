@@ -2,6 +2,7 @@ import React from 'react';
 import type { TemplateBuilderData } from './template-builder-data';
 import { Editor, Frame, useNode, Element } from '@craftjs/core';
 import { RenderNode } from '@/utils/template-utils';
+import { TouchWrapper } from '@/utils/touch-wrapper';
 
 interface TemplateBuilderProps {
   initialData: TemplateBuilderData;
@@ -13,48 +14,50 @@ export const TemplateBuilder = ({ initialData }: TemplateBuilderProps) => {
 
   return (
     <div className="page-container">
-      <Editor
-        onRender={RenderNode}
-        resolver={{
-          Element,
-          Container,
-          Header,
-          Main,
-          AsideLeft,
-          AsideRight,
-          Heading,
-          Paragraph,
-          SectionExperience,
-          SectionEducation,
-          SectionCourse,
-          SectionContact,
-          SectionSkills,
-          SectionTools,
-          SectionHoobies,
-          SectionLanguages,
-          SectionLinks,
-        }}>
-        <Frame>
-          <Element is={Container} canvas>
-            <Element profile={profile} is={Header} />
-            <Element is={Main}>
-              <Element profile={profile} is={AsideLeft} canvas>
-                <Element experiences={experiences} is={SectionExperience} />
-                <Element education={education} is={SectionEducation} />
-                <Element courses={courses} is={SectionCourse} />
-              </Element>
-              <Element is={AsideRight} canvas>
-                <Element contact={contact} is={SectionContact} />
-                <Element skills={skills} is={SectionSkills} />
-                <Element tools={tools} is={SectionTools} />
-                <Element hoobies={hoobies} is={SectionHoobies} />
-                <Element languages={languages} is={SectionLanguages} />
-                <Element links={links} is={SectionLinks} />
+      <TouchWrapper>
+        <Editor
+          onRender={RenderNode}
+          resolver={{
+            Element,
+            Container,
+            Header,
+            Main,
+            AsideLeft,
+            AsideRight,
+            Heading,
+            Paragraph,
+            SectionExperience,
+            SectionEducation,
+            SectionCourse,
+            SectionContact,
+            SectionSkills,
+            SectionTools,
+            SectionHoobies,
+            SectionLanguages,
+            SectionLinks,
+          }}>
+          <Frame>
+            <Element is={Container} canvas>
+              <Element profile={profile} is={Header} />
+              <Element is={Main}>
+                <Element profile={profile} is={AsideLeft} canvas>
+                  <Element experiences={experiences} is={SectionExperience} />
+                  <Element education={education} is={SectionEducation} />
+                  <Element courses={courses} is={SectionCourse} />
+                </Element>
+                <Element is={AsideRight} canvas>
+                  <Element contact={contact} is={SectionContact} />
+                  <Element skills={skills} is={SectionSkills} />
+                  <Element tools={tools} is={SectionTools} />
+                  <Element hoobies={hoobies} is={SectionHoobies} />
+                  <Element languages={languages} is={SectionLanguages} />
+                  <Element links={links} is={SectionLinks} />
+                </Element>
               </Element>
             </Element>
-          </Element>
-        </Frame>
-      </Editor>
+          </Frame>
+        </Editor>
+      </TouchWrapper>
     </div>
   );
 };
