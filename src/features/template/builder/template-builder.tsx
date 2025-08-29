@@ -4,6 +4,15 @@ import { Editor, Frame, useNode, Element } from '@craftjs/core';
 import { RenderNode } from '@/utils/template-utils';
 import { TouchWrapper } from '@/utils/touch-wrapper';
 
+/* TODO: US - clicar e arrastar itens
+ * estilizar o container do item após selecionar.
+ * permitir opção de clicar em subir ou descer elemento no mobile.
+ * remover a opção mover no mobile.
+ * ajustar estilos da borda de foco.
+ * adicionar informações reais no initialData do curriculo.
+ * revisar, finalizar e fazer PR.
+ */
+
 interface TemplateBuilderProps {
   initialData: TemplateBuilderData;
 }
