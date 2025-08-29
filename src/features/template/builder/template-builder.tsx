@@ -8,7 +8,9 @@ import { TouchWrapper } from '@/utils/touch-wrapper';
  * estilizar o container do item após selecionar.
  * permitir opção de clicar em subir ou descer elemento no mobile.
  * remover a opção mover no mobile.
+ * configurar opção de salvar/editar (editor -> enabled(false/true))
  * ajustar estilos da borda de foco.
+ * quando clicar fora desselecionar.
  * adicionar informações reais no initialData do curriculo.
  * revisar, finalizar e fazer PR.
  */
@@ -44,7 +46,8 @@ export const TemplateBuilder = ({ initialData }: TemplateBuilderProps) => {
             SectionHoobies,
             SectionLanguages,
             SectionLinks,
-          }}>
+          }}
+          enabled={true}>
           <Frame>
             <Element is={Container} canvas>
               <Element profile={profile} is={Header} />
@@ -313,9 +316,9 @@ const Header = ({ profile }: HeaderProps) => {
       ref={(ref: HTMLElement) => {
         connect(drag(ref));
       }}>
-      <img className="size-140 rounded-full" src="/foto/foto-pecege.jpeg" alt="" />
+      <img className="size-120 rounded-full" src="/foto/foto-pecege.jpeg" alt="" />
       <div className="flex flex-col text-center sm:text-left">
-        <Heading className="text-40 font-bold lg:text-48 lg:text-nowrap">{profile.name}</Heading>
+        <Heading className="text-40 font-bold lg:text-40 lg:text-nowrap">{profile.name}</Heading>
         <Paragraph className="font-sans text-28">{profile.role}</Paragraph>
       </div>
     </header>
@@ -333,7 +336,7 @@ const Container = ({ children }: ContainerProps) => {
 
   return (
     <div
-      className="craftjs-renderer mx-auto flex max-w-[64rem] flex-col border-2 border-dashed px-20 py-56"
+      className="craftjs-renderer mx-auto flex max-w-[64rem] flex-col border-2 border-dashed border-gray-300 px-20 py-56"
       ref={(ref: HTMLDivElement) => {
         connect(drag(ref));
       }}>
